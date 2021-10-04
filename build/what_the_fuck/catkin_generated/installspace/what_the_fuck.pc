@@ -1,0 +1,8 @@
+prefix=/home/cameron/NUMarine_ws/install
+
+Name: what_the_fuck
+Description: Description of what_the_fuck
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

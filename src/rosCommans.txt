@@ -1,0 +1,13 @@
+Useful ROS/VRX commands:
+
+source /opt/ros/noetic/setup.bash
+source ~/vrx_ws/devel/setup.bash
+source ~/NUMarine_ws/devel/setup.bash
+
+
+roslaunch vrx_gazebo generate_wamv.launch thruster_yaml:=$HOME/NUMarine_ws/src/model/thruster_config.yaml  sensor_yaml:=$HOME/NUMarine_ws/src/model/sensor_config.yaml wamv_target:=$HOME/NUMarine_ws/src/model/NUMarine_wamv.urdf
+roslaunch vrx_gazebo sydneyregatta.launch urdf:=$HOME/NUMarine_ws/model/NUMarine_wamv.urdf
+
+/wamv/sensors/gps/fix
+/wamv/sensors/imu/imu/data
+/wamv/sensors/lidars/lidar_wamv/points

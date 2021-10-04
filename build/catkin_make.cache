@@ -1,0 +1,2 @@
+navigation:vrx_basics:what_the_fuck
+-DCATKIN_DEVEL_PREFIX=/home/cameron/NUMarine_ws/devel -DCMAKE_INSTALL_PREFIX=/home/cameron/NUMarine_ws/install -G Unix Makefiles

@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/cameron/vrx_ws/devel/include/**",
+                "/opt/ros/noetic/include/**",
+                "/home/cameron/vrx_ws/src/vrx/usv_gazebo_plugins/include/**",
+                "/home/cameron/NUMarine_ws/src/vrx_basics/include/**",
+                "/home/cameron/vrx_ws/src/vrx/vrx_gazebo/include/**",
+                "/home/cameron/vrx_ws/src/vrx/wave_gazebo_plugins/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "configurationProvider": "go2sh.cmake-integration"
+        }
+    ],
+    "version": 4
+}

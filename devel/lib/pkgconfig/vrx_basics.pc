@@ -1,0 +1,8 @@
+prefix=/home/cameron/NUMarine_ws/devel
+
+Name: vrx_basics
+Description: Description of vrx_basics
+Version: 0.0.0
+Cflags: -I/home/cameron/NUMarine_ws/src/vrx_basics/include
+Libs: -L${prefix}/lib -lvrx_basics
+Requires: roscpp rospy std_msgs message_runtime

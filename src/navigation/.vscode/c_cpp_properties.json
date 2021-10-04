@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/opt/ros/noetic/include/**",
+        "/home/cameron/NUMarine_ws/src/navigation/include/**",
+        "/home/cameron/NUMarine_ws/src/vrx_basics/include/**",
+        "/home/cameron/NUMarine_ws/src/what_the_fuck/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

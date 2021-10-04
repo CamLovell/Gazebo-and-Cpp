@@ -1,0 +1,8 @@
+prefix=/home/cameron/NUMarine_ws/devel
+
+Name: navigation
+Description: Description of navigation
+Version: 0.0.0
+Cflags: -I/home/cameron/NUMarine_ws/src/navigation/include
+Libs: -L${prefix}/lib -lnavigation
+Requires: pcl_ros roscpp rospy std_msgs
