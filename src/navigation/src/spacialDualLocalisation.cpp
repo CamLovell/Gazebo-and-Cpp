@@ -25,6 +25,7 @@ void nedCallBack(const gazebo_msgs::ModelStates::ConstPtr& nedMsg){
     // rBNn.setZero();
     NEDtoGeo(rBNn, rBOg);
     ROS_INFO("Lat = %.6f\nLong = %.6f\nAlt = %.6f\n", rBOg(0),rBOg(1),rBOg(2));
+    ROS_INFO("x = %.6f\ny = %.6f\nz = %.6f\n", rBNn(0),rBNn(1),rBNn(2));
     // ROS_INFO("Lat = %.6f\nLong = %.6f\nAlt = %.6f\n", rBNn(0),rBNn(1),rBNn(2));
 }
 

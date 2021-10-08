@@ -164,6 +164,7 @@ preinstall/fast:
 
 # clear depends
 depend:
+	$(CMAKE_COMMAND) -P /home/cameron/NUMarine_ws/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -285,69 +286,17 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
-# Target rules for targets named run_tests_navigation_gtest_navTest
+# Target rules for targets named catchTests
 
 # Build rule for target.
-run_tests_navigation_gtest_navTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 run_tests_navigation_gtest_navTest
-.PHONY : run_tests_navigation_gtest_navTest
+catchTests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 catchTests
+.PHONY : catchTests
 
 # fast build rule for target.
-run_tests_navigation_gtest_navTest/fast:
-	$(MAKE) -f navigation/CMakeFiles/run_tests_navigation_gtest_navTest.dir/build.make navigation/CMakeFiles/run_tests_navigation_gtest_navTest.dir/build
-.PHONY : run_tests_navigation_gtest_navTest/fast
-
-#=============================================================================
-# Target rules for targets named run_tests_navigation_gtest
-
-# Build rule for target.
-run_tests_navigation_gtest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 run_tests_navigation_gtest
-.PHONY : run_tests_navigation_gtest
-
-# fast build rule for target.
-run_tests_navigation_gtest/fast:
-	$(MAKE) -f navigation/CMakeFiles/run_tests_navigation_gtest.dir/build.make navigation/CMakeFiles/run_tests_navigation_gtest.dir/build
-.PHONY : run_tests_navigation_gtest/fast
-
-#=============================================================================
-# Target rules for targets named _run_tests_navigation_gtest
-
-# Build rule for target.
-_run_tests_navigation_gtest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_navigation_gtest
-.PHONY : _run_tests_navigation_gtest
-
-# fast build rule for target.
-_run_tests_navigation_gtest/fast:
-	$(MAKE) -f navigation/CMakeFiles/_run_tests_navigation_gtest.dir/build.make navigation/CMakeFiles/_run_tests_navigation_gtest.dir/build
-.PHONY : _run_tests_navigation_gtest/fast
-
-#=============================================================================
-# Target rules for targets named run_tests_navigation
-
-# Build rule for target.
-run_tests_navigation: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 run_tests_navigation
-.PHONY : run_tests_navigation
-
-# fast build rule for target.
-run_tests_navigation/fast:
-	$(MAKE) -f navigation/CMakeFiles/run_tests_navigation.dir/build.make navigation/CMakeFiles/run_tests_navigation.dir/build
-.PHONY : run_tests_navigation/fast
-
-#=============================================================================
-# Target rules for targets named _run_tests_navigation_gtest_navTest
-
-# Build rule for target.
-_run_tests_navigation_gtest_navTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_navigation_gtest_navTest
-.PHONY : _run_tests_navigation_gtest_navTest
-
-# fast build rule for target.
-_run_tests_navigation_gtest_navTest/fast:
-	$(MAKE) -f navigation/CMakeFiles/_run_tests_navigation_gtest_navTest.dir/build.make navigation/CMakeFiles/_run_tests_navigation_gtest_navTest.dir/build
-.PHONY : _run_tests_navigation_gtest_navTest/fast
+catchTests/fast:
+	$(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/build
+.PHONY : catchTests/fast
 
 #=============================================================================
 # Target rules for targets named spacialDualLocalisation
@@ -558,6 +507,19 @@ tf_generate_messages_nodejs/fast:
 .PHONY : tf_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named common
+
+# Build rule for target.
+common: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 common
+.PHONY : common
+
+# fast build rule for target.
+common/fast:
+	$(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/build
+.PHONY : common/fast
+
+#=============================================================================
 # Target rules for targets named tf_generate_messages_lisp
 
 # Build rule for target.
@@ -688,19 +650,6 @@ roscpp_generate_messages_eus/fast:
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
-# Target rules for targets named _run_tests_navigation
-
-# Build rule for target.
-_run_tests_navigation: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_navigation
-.PHONY : _run_tests_navigation
-
-# fast build rule for target.
-_run_tests_navigation/fast:
-	$(MAKE) -f navigation/CMakeFiles/_run_tests_navigation.dir/build.make navigation/CMakeFiles/_run_tests_navigation.dir/build
-.PHONY : _run_tests_navigation/fast
-
-#=============================================================================
 # Target rules for targets named topic_tools_generate_messages_nodejs
 
 # Build rule for target.
@@ -829,6 +778,19 @@ std_msgs_generate_messages_lisp: cmake_check_build_system
 std_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f navigation/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make navigation/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named run_testing
+
+# Build rule for target.
+run_testing: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_testing
+.PHONY : run_testing
+
+# fast build rule for target.
+run_testing/fast:
+	$(MAKE) -f navigation/CMakeFiles/run_testing.dir/build.make navigation/CMakeFiles/run_testing.dir/build
+.PHONY : run_testing/fast
 
 #=============================================================================
 # Target rules for targets named tf2_msgs_generate_messages_cpp
@@ -1234,19 +1196,6 @@ topic_tools_generate_messages_eus/fast:
 .PHONY : topic_tools_generate_messages_eus/fast
 
 #=============================================================================
-# Target rules for targets named clean_test_results_navigation
-
-# Build rule for target.
-clean_test_results_navigation: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 clean_test_results_navigation
-.PHONY : clean_test_results_navigation
-
-# fast build rule for target.
-clean_test_results_navigation/fast:
-	$(MAKE) -f navigation/CMakeFiles/clean_test_results_navigation.dir/build.make navigation/CMakeFiles/clean_test_results_navigation.dir/build
-.PHONY : clean_test_results_navigation/fast
-
-#=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -1258,19 +1207,6 @@ geometry_msgs_generate_messages_cpp: cmake_check_build_system
 geometry_msgs_generate_messages_cpp/fast:
 	$(MAKE) -f navigation/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make navigation/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
 .PHONY : geometry_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named navTest
-
-# Build rule for target.
-navTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 navTest
-.PHONY : navTest
-
-# fast build rule for target.
-navTest/fast:
-	$(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/build
-.PHONY : navTest/fast
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_nodejs
@@ -1749,11 +1685,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... run_tests_navigation_gtest_navTest"
-	@echo "... run_tests_navigation_gtest"
-	@echo "... _run_tests_navigation_gtest"
-	@echo "... run_tests_navigation"
-	@echo "... _run_tests_navigation_gtest_navTest"
+	@echo "... catchTests"
 	@echo "... spacialDualLocalisation"
 	@echo "... navigation_genpy"
 	@echo "... navigation_generate_messages_nodejs"
@@ -1770,6 +1702,7 @@ help:
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_cpp"
 	@echo "... tf_generate_messages_nodejs"
+	@echo "... common"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_cpp"
 	@echo "... dynamic_reconfigure_gencfg"
@@ -1780,7 +1713,6 @@ help:
 	@echo "... pcl_ros_gencfg"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... roscpp_generate_messages_eus"
-	@echo "... _run_tests_navigation"
 	@echo "... topic_tools_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... topic_tools_generate_messages_py"
@@ -1791,6 +1723,7 @@ help:
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... dynamic_reconfigure_generate_messages_py"
 	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... run_testing"
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... dynamic_reconfigure_generate_messages_lisp"
 	@echo "... navigation_geneus"
@@ -1822,9 +1755,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... dynamic_reconfigure_generate_messages_cpp"
 	@echo "... topic_tools_generate_messages_eus"
-	@echo "... clean_test_results_navigation"
 	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... navTest"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_nodejs"
@@ -1871,6 +1802,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /home/cameron/NUMarine_ws/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

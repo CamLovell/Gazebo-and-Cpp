@@ -70,59 +70,14 @@ navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDualLocalisation.cp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spacialDualLocalisation.dir/src/spacialDualLocalisation.cpp.s"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cameron/NUMarine_ws/src/navigation/src/spacialDualLocalisation.cpp -o CMakeFiles/spacialDualLocalisation.dir/src/spacialDualLocalisation.cpp.s
 
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.o: navigation/CMakeFiles/spacialDualLocalisation.dir/flags.make
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/testing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.o"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/src/testing.cpp
-
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.i"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cameron/NUMarine_ws/src/navigation/src/testing.cpp > CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.i
-
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.s"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cameron/NUMarine_ws/src/navigation/src/testing.cpp -o CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.s
-
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.o: navigation/CMakeFiles/spacialDualLocalisation.dir/flags.make
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/Eig.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.o"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/src/Eig.cpp
-
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.i"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cameron/NUMarine_ws/src/navigation/src/Eig.cpp > CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.i
-
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.s"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cameron/NUMarine_ws/src/navigation/src/Eig.cpp -o CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.s
-
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.o: navigation/CMakeFiles/spacialDualLocalisation.dir/flags.make
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/spacialDual.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.o"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/src/spacialDual.cpp
-
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.i"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cameron/NUMarine_ws/src/navigation/src/spacialDual.cpp > CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.i
-
-navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.s"
-	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cameron/NUMarine_ws/src/navigation/src/spacialDual.cpp -o CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.s
-
 # Object files for target spacialDualLocalisation
 spacialDualLocalisation_OBJECTS = \
-"CMakeFiles/spacialDualLocalisation.dir/src/spacialDualLocalisation.cpp.o" \
-"CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.o" \
-"CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.o" \
-"CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.o"
+"CMakeFiles/spacialDualLocalisation.dir/src/spacialDualLocalisation.cpp.o"
 
 # External object files for target spacialDualLocalisation
 spacialDualLocalisation_EXTERNAL_OBJECTS =
 
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDualLocalisation.cpp.o
-/home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.o
-/home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.o
-/home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: navigation/CMakeFiles/spacialDualLocalisation.dir/build.make
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /opt/ros/noetic/lib/libpcl_ros_filter.so
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /opt/ros/noetic/lib/libpcl_ros_tf.so
@@ -240,8 +195,9 @@ spacialDualLocalisation_EXTERNAL_OBJECTS =
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /home/cameron/NUMarine_ws/devel/lib/libcommon.so
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: navigation/CMakeFiles/spacialDualLocalisation.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation"
 	cd /home/cameron/NUMarine_ws/build/navigation && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/spacialDualLocalisation.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

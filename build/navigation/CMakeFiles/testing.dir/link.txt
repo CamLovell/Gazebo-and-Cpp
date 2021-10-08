@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3  -shared -Wl,-soname,libtesting.so -o /home/cameron/NUMarine_ws/devel/lib/libtesting.so CMakeFiles/testing.dir/src/Eig.cpp.o CMakeFiles/testing.dir/src/helpers.cpp.o CMakeFiles/testing.dir/src/spacialDual.cpp.o CMakeFiles/testing.dir/src/testing.cpp.o CMakeFiles/testing.dir/tests/navTest.cpp.o 

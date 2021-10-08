@@ -10,74 +10,28 @@
 #include "spacialDual.h"
 #include "testing.h"
 #include "Eig.hpp"
+#include "helpers.h"
 
 
 class eigen_atan2: public ::testing::Test { 
 public: 
-   eigen_atan2( ) { 
-       // initialization code here
-   } 
-
-   void SetUp( ) { 
-       // code here will execute just before the test ensues 
-   }
-
-   void TearDown( ) { 
-       // code here will be called just after the test completes
-       // ok to through exceptions from here if need be
-   }
-
-   ~eigen_atan2( )  { 
-       // cleanup any pending stuff, but no exceptions allowed
-   }
-
-   // put in any custom data members that you need 
+   eigen_atan2( ) {} 
+   ~eigen_atan2( )  {}
 };
 class Quaternions: public ::testing::Test { 
 public: 
-   Quaternions( ) { 
-       // initialization code here
-   } 
-
-   void SetUp( ) { 
-       // code here will execute just before the test ensues 
-   }
-
-   void TearDown( ) { 
-       // code here will be called just after the test completes
-       // ok to through exceptions from here if need be
-   }
-
-   ~Quaternions( )  { 
-       // cleanup any pending stuff, but no exceptions allowed
-   }
-
-   // put in any custom data members that you need 
+   Quaternions( ) {}
+   ~Quaternions( )  {}
 };
 class GPS_Functions: public ::testing::Test { 
 public: 
-   GPS_Functions( ) { 
-       // initialization code here
-       std::cout << "teseting asdfgbakdsjf" << std::endl;
-
-   } 
-
-   void SetUp( ) { 
-       // code here will execute just before the test ensues
-       std::cout << "teseting asdfgbakdsjf" << std::endl;
-       gpsInit();
-   }
-
-   void TearDown( ) { 
-       // code here will be called just after the test completes
-       // ok to through exceptions from here if need be
-   }
-
-   ~GPS_Functions( )  { 
-       // cleanup any pending stuff, but no exceptions allowed
-   }
-
-   // put in any custom data members that you need 
+   GPS_Functions( ) {} 
+   ~GPS_Functions( )  {}
+};
+class Helpers: public ::testing::Test { 
+public: 
+   Helpers( ) {} 
+   ~Helpers( )  {}
 };
 
 TEST(eigen_atan2, expect_true) {
@@ -171,6 +125,16 @@ TEST(GPS_Functions, NED_to_LatLong_nonZero) {
     }
     // std::cout << resultRPY << std::endl;  
     // std::cout << resultRPY << std::endl;  
+}
+TEST(Helpers, Weighted_Resample) {
+    Eigen::VectorXd w(10);
+    Eigen::Matrix<int,Eigen::Dynamic,1> idx;
+    int N=10;
+    w.fill(0.5/9);
+    w(0)=0.5;
+    weightedResample(w,N,idx);
+
+    std::cout << idx << std::endl;
 }
 
 int main(int argc, char **argv) {

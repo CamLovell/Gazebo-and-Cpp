@@ -3,6 +3,17 @@ project(navigation)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+add_compile_options(-fdiagnostics-color)
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -13,6 +24,9 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
 )
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+find_package(Catch2 2.13 REQUIRED)
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -73,10 +87,7 @@ find_package(catkin REQUIRED COMPONENTS
    DEPENDENCIES
    std_msgs
  )
-set(custom_depends src/testing.cpp src/Eig.cpp src/spacialDual.cpp)
-add_executable(spacialDualLocalisation src/spacialDualLocalisation.cpp  src/testing.cpp src/Eig.cpp src/spacialDual.cpp)
-target_link_libraries(spacialDualLocalisation ${catkin_LIBRARIES})
-add_dependencies(spacialDualLocalisation navigation_generate_messages_cpp)
+
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -120,12 +131,51 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
+set(DIR_SRC src)
+set(DIR_TEST_SRC test/src)
+
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
-  /usr/include/eigen3
-  ~/NUMarine_ws/src/navigation/include/navigation
+  ${EIGEN3_INCLUDE_DIR}
+  # /usr/include/eigen3
+  ${DIR_SRC}
+  ${DIR_TEST_SRC}
 )
+# include_directories(${EIGEN3_INCLUDE_DIR})
+
+# Target names
+set(TARGET_LIB common)
+set(TARGET_BIN ${PROJECT_NAME})
+set(TARGET_TEST catchTests)
+
+# Libraries
+set(LIBS
+    Eigen3::Eigen
+)
+
+# Set appropriate source directories
+
+
+# Application
+file(GLOB SRC_BIN CONFIGURE_DEPENDS ${DIR_SRC}/*.cpp ${DIR_SRC}/*.h ${DIR_SRC}/*.hpp)
+
+#static Library
+set(SRC_LIB ${SRC_BIN})
+list(FILTER SRC_LIB EXCLUDE REGEX ".*spacialDualLocalisation.cpp$")
+
+if(SRC_LIB)
+    add_library(${TARGET_LIB} ${SRC_LIB})
+endif()
+
+
+add_executable(spacialDualLocalisation src/spacialDualLocalisation.cpp)
+target_link_libraries(spacialDualLocalisation ${catkin_LIBRARIES})
+if(SRC_LIB)
+  target_link_libraries(spacialDualLocalisation ${TARGET_LIB})
+endif()
+target_link_libraries(spacialDualLocalisation ${LIBS})
+add_dependencies(spacialDualLocalisation navigation_generate_messages_cpp)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -211,10 +261,39 @@ include_directories(
 ## set(SRC_DIR $(foreach x, $(src), $(wildcard $(addprefix $(x)/testing.cpp))))
 # set(SRC_DIR src/testing.cpp)
 # set(custom_depends src/testing.cpp src/Eig.cpp)
-if (CATKIN_ENABLE_TESTING)
-  catkin_add_gtest(navTest tests/navTest.cpp ${custom_depends})
-  target_link_libraries(navTest ${catkin_LIBRARIES})
-endif()
+# file(GLOB SRC_TEST CONFIGURE_DEPENDS ${DIR_SRC}/*.cpp ${DIR_SRC}/*.h ${DIR_SRC}/*.hpp ${DIR_TEST_SRC}/*.cpp ${DIR_TEST_SRC}/*.h ${DIR_TEST_SRC}/*.hpp)
+
+# set(TEST_SRC_LIB ${SRC_TEST})
+# list(FILTER TEST_SRC_LIB EXCLUDE REGEX ".*spacialDualLocalisation.cpp$")
+# # list(FILTER TEST_LIB EXCLUDE REGEX ".*spacialDualLocalisation.cpp$")
+# set(TEST_LIB testing)
+# if(TEST_SRC_LIB)
+#     add_library(${TEST_LIB} ${TEST_SRC_LIB})
+# endif()
+# # set(custom_depends ${SRC_TEST})
+# # if (CATKIN_ENABLE_TESTING)
+#   catkin_add_gtest(navTest tests/navTest.cpp)
+#   target_link_libraries(navTest ${TEST_LIB})
+#   target_link_libraries(navTest ${LIBS})
+#   target_link_libraries(navTest ${catkin_LIBRARIES})
+# endif()
 
 ## Add folders to be run by python nosetests
-# catkin_add_nosetests(test)
+# catkin_add_nosetests(test)  `
+
+file(GLOB SRC_TEST CONFIGURE_DEPENDS ${DIR_TEST_SRC}/*.cpp ${DIR_TEST_SRC}/*.h ${DIR_TEST_SRC}/*.hpp)
+
+add_executable(${TARGET_TEST} ${SRC_TEST})
+if(SRC_LIB)
+    target_link_libraries(${TARGET_TEST} ${TARGET_LIB})
+endif()
+target_link_libraries(${TARGET_TEST} ${LIBS})
+target_link_libraries(${TARGET_TEST} Catch2::Catch2)
+
+add_custom_target(run_testing ALL
+    COMMAND ${TARGET_TEST} --use-colour yes
+    DEPENDS ${TARGET_TEST}
+    DEPENDS spacialDualLocalisation
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Running tests"
+)

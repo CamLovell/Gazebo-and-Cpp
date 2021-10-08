@@ -5,30 +5,96 @@
 
 #include "spacialDual.h"
 #include "sensorData.h"
-#include"Eig.hpp"
+#include "helpers.h"
+#include "Eig.hpp"
 
 
 static Eigen::VectorXd rNOg(3),rNOe(3);
 static Eigen::MatrixXd Rne; //Latitude and longitude of NED origin in vrx sydneyRegatta
-static double a,b,d,f;
+static double a,b,d,f,gpsSigma;
 static bool isInit;
 
-// Initialise zero point and rotation matrix
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+// GPS Initialisation Function, change/add any constants here!!
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+// void gpsInit(void){
+//     // if(!isInit){
+//         rNOg << -33.724223, 150.679736, 0.0; //Geodedic coordinates of NED origin
+//         rotateLatLong(rNOg, Rne);
+//         // rNOe << -4630032, 2600407, -3521046; //ECEF coordinates of NED origin
+//         rNOe << -4630032.213502892,   2600406.528857937,  -3521045.936084332;
+//         //Paramaters to describe earth's elipsoid
+//         a = 6378137.0;
+//         b = 6356752.3142;
+//         d = 0.08181919; 
+//         f = std::sqrt((a*a-b*b)/(b*b));
+//         isInit = true;
+//     // }    
+// }
 void gpsInit(void){
     // if(!isInit){
+        isInit = true;
+
+        rNOe << -4630032.213502892,   2600406.528857937,  -3521045.936084332;
         rNOg << -33.724223, 150.679736, 0.0; //Geodedic coordinates of NED origin
         rotateLatLong(rNOg, Rne);
+        
         // rNOe << -4630032, 2600407, -3521046; //ECEF coordinates of NED origin
-        rNOe << -4630032.213502892,   2600406.528857937,  -3521045.936084332;
+        
         //Paramaters to describe earth's elipsoid
         a = 6378137.0;
         b = 6356752.3142;
         d = 0.08181919; 
         f = std::sqrt((a*a-b*b)/(b*b));
-        isInit = true;
+        
+        double sigmaNE = 0.08;
+        double sigmaD = 0.1;
+        Eigen::MatrixXd sig(3,1), sigGeo;
+        sig << 0,0,0;
+        
+        NEDtoGeo(sig,sigGeo);
+
+        gpsSigma = abs(sigGeo(0,0)-rNOg(0));
+        // std::cout << gpsSigma << std::endl;
+        
+        
     // }    
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+// Log Likelihoods // Combine these into one maybe? will save 1 funciton call per loop?
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
+    Eigen::MatrixXd partCoords, partWeight;
+
+    // Initialise outputs with zeros to avoid any issues with existing memory values
+    lw.setZero(M);
+
+    // Convert NED coordinates to lat and long as measured
+    NEDtoGeo(x,partCoords);
+    // double sig2 = gpsSigma*gpsSigma; // Include this as a pramater?
+
+    // Non-log version
+    // w = (1/sqrt(2*M_PI*gpsSigma*gpsSigma))*(0.5*((partCoords.array().square().colwise()-y.array()))/(gpsSigma*gpsSigma)).exp();
+   
+    // Calculate log likelihood 
+    partWeight = log(1/sqrt(2*M_PI*gpsSigma*gpsSigma))+(0.5*((partCoords.array().square().colwise()-y.array()))/(gpsSigma*gpsSigma));
+
+    // Hacky loop for poor LSE implementation, need to look at matrix input LSE
+    for(int i = 0; i<M; i++){
+        Eigen::VectorXd temp;
+        temp = partWeight.col(i);
+
+        lw(i) = logSumExponential(temp);
+    }
+}
+void imuLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
+
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+// Coordinate conversions between NED and Geodetic
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
 void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     // Ensure input dimensions are correct
     assert(isInit);
@@ -56,12 +122,20 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
 
     //!!Altitude measurement is broken however this is not used in the boat model so not a big deal for now!!
     //// rBOg.row(2) = ((p.array()/temp0.array().cos()))+(pN.array()/((rNOe.row(0).array()*(M_PI/180)).cos()))).matrix();
-// p.array()/(temp0.array().cos()+cos(rNOg(0)))
-    rBOg << temp0*180/M_PI, 2*temp1*180/M_PI,rBOe.norm()-rNOe.norm();
+// p.array()/(temp0.array().cos()+cos(rNOg(0))) 
+//(pN.array()/cos(rNOg(0)*M_PI/180))-(p.array()/temp0.array().cos())
+// rBOe.norm()-rNOe.norm()
+
+    // Alt is dodgy as fuck!!!
+    rBOg << temp0*180/M_PI, 2*temp1*180/M_PI,(rBOe.norm()-rNOe.norm()+4.60823*rBNn(2));
     // <latitude_deg>-33.724223</latitude_deg>
     // <longitude_deg>150.679736</longitude_deg>
     // <elevation>0.0</elevation>
 }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+// Rotation representation conversions between Roll Pitch Yaw and Quaternions
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 void RPYtoQuaternion(const Eigen::MatrixXd& RPY, Eigen::MatrixXd& quaternion){
     // Declare variables for use
@@ -105,13 +179,18 @@ void quaterniontoRPY(const Eigen::MatrixXd& quaternion, Eigen::MatrixXd& RPY){
     
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+// Rotation of coordinates given latitude and longitude
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Create rotation matrix for a given lonitude and latitude (input in degrees)
-void  rotateLatLong(Eigen::VectorXd& geoCoordDeg, Eigen::MatrixXd& R){
+void  rotateLatLong(const Eigen::VectorXd& geoCoordDeg, Eigen::MatrixXd& R){
     // Initialise rotation components
-    Eigen::MatrixXd RZ(geoCoordDeg.rows(),geoCoordDeg.rows()), RY(geoCoordDeg.rows(),geoCoordDeg.rows());
-    geoCoordDeg(0) = -geoCoordDeg(0)-90;
+    Eigen::MatrixXd RZ(geoCoordDeg.rows(),geoCoordDeg.rows()), RY(geoCoordDeg.rows(),geoCoordDeg.rows()),adjCoord;
+    adjCoord = geoCoordDeg;
+    adjCoord(0) = -adjCoord(0)-90;
     //Deg to rad conversion
-    Eigen::VectorXd geoCoordRad = (M_PI/180.0)*geoCoordDeg; 
+    Eigen::VectorXd geoCoordRad = (M_PI/180.0)*adjCoord; 
     
     // z and y axis roations (latitude and longitude respectively)
     RZ << cos(geoCoordRad(1)),-sin(geoCoordRad(1)),0,sin(geoCoordRad(1)),cos(geoCoordRad(1)),0,0,0,1;

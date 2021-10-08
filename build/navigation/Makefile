@@ -164,83 +164,24 @@ preinstall/fast:
 
 # clear depends
 depend:
+	cd /home/cameron/NUMarine_ws/build && $(CMAKE_COMMAND) -P /home/cameron/NUMarine_ws/build/CMakeFiles/VerifyGlobs.cmake
 	cd /home/cameron/NUMarine_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-navigation/CMakeFiles/run_tests_navigation_gtest_navTest.dir/rule:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/run_tests_navigation_gtest_navTest.dir/rule
-.PHONY : navigation/CMakeFiles/run_tests_navigation_gtest_navTest.dir/rule
+navigation/CMakeFiles/catchTests.dir/rule:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/catchTests.dir/rule
+.PHONY : navigation/CMakeFiles/catchTests.dir/rule
 
 # Convenience name for target.
-run_tests_navigation_gtest_navTest: navigation/CMakeFiles/run_tests_navigation_gtest_navTest.dir/rule
+catchTests: navigation/CMakeFiles/catchTests.dir/rule
 
-.PHONY : run_tests_navigation_gtest_navTest
+.PHONY : catchTests
 
 # fast build rule for target.
-run_tests_navigation_gtest_navTest/fast:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/run_tests_navigation_gtest_navTest.dir/build.make navigation/CMakeFiles/run_tests_navigation_gtest_navTest.dir/build
-.PHONY : run_tests_navigation_gtest_navTest/fast
-
-# Convenience name for target.
-navigation/CMakeFiles/run_tests_navigation_gtest.dir/rule:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/run_tests_navigation_gtest.dir/rule
-.PHONY : navigation/CMakeFiles/run_tests_navigation_gtest.dir/rule
-
-# Convenience name for target.
-run_tests_navigation_gtest: navigation/CMakeFiles/run_tests_navigation_gtest.dir/rule
-
-.PHONY : run_tests_navigation_gtest
-
-# fast build rule for target.
-run_tests_navigation_gtest/fast:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/run_tests_navigation_gtest.dir/build.make navigation/CMakeFiles/run_tests_navigation_gtest.dir/build
-.PHONY : run_tests_navigation_gtest/fast
-
-# Convenience name for target.
-navigation/CMakeFiles/_run_tests_navigation_gtest.dir/rule:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/_run_tests_navigation_gtest.dir/rule
-.PHONY : navigation/CMakeFiles/_run_tests_navigation_gtest.dir/rule
-
-# Convenience name for target.
-_run_tests_navigation_gtest: navigation/CMakeFiles/_run_tests_navigation_gtest.dir/rule
-
-.PHONY : _run_tests_navigation_gtest
-
-# fast build rule for target.
-_run_tests_navigation_gtest/fast:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/_run_tests_navigation_gtest.dir/build.make navigation/CMakeFiles/_run_tests_navigation_gtest.dir/build
-.PHONY : _run_tests_navigation_gtest/fast
-
-# Convenience name for target.
-navigation/CMakeFiles/run_tests_navigation.dir/rule:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/run_tests_navigation.dir/rule
-.PHONY : navigation/CMakeFiles/run_tests_navigation.dir/rule
-
-# Convenience name for target.
-run_tests_navigation: navigation/CMakeFiles/run_tests_navigation.dir/rule
-
-.PHONY : run_tests_navigation
-
-# fast build rule for target.
-run_tests_navigation/fast:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/run_tests_navigation.dir/build.make navigation/CMakeFiles/run_tests_navigation.dir/build
-.PHONY : run_tests_navigation/fast
-
-# Convenience name for target.
-navigation/CMakeFiles/_run_tests_navigation_gtest_navTest.dir/rule:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/_run_tests_navigation_gtest_navTest.dir/rule
-.PHONY : navigation/CMakeFiles/_run_tests_navigation_gtest_navTest.dir/rule
-
-# Convenience name for target.
-_run_tests_navigation_gtest_navTest: navigation/CMakeFiles/_run_tests_navigation_gtest_navTest.dir/rule
-
-.PHONY : _run_tests_navigation_gtest_navTest
-
-# fast build rule for target.
-_run_tests_navigation_gtest_navTest/fast:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/_run_tests_navigation_gtest_navTest.dir/build.make navigation/CMakeFiles/_run_tests_navigation_gtest_navTest.dir/build
-.PHONY : _run_tests_navigation_gtest_navTest/fast
+catchTests/fast:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/build
+.PHONY : catchTests/fast
 
 # Convenience name for target.
 navigation/CMakeFiles/spacialDualLocalisation.dir/rule:
@@ -483,6 +424,21 @@ tf_generate_messages_nodejs/fast:
 .PHONY : tf_generate_messages_nodejs/fast
 
 # Convenience name for target.
+navigation/CMakeFiles/common.dir/rule:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/common.dir/rule
+.PHONY : navigation/CMakeFiles/common.dir/rule
+
+# Convenience name for target.
+common: navigation/CMakeFiles/common.dir/rule
+
+.PHONY : common
+
+# fast build rule for target.
+common/fast:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/build
+.PHONY : common/fast
+
+# Convenience name for target.
 navigation/CMakeFiles/tf_generate_messages_lisp.dir/rule:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/tf_generate_messages_lisp.dir/rule
 .PHONY : navigation/CMakeFiles/tf_generate_messages_lisp.dir/rule
@@ -633,21 +589,6 @@ roscpp_generate_messages_eus/fast:
 .PHONY : roscpp_generate_messages_eus/fast
 
 # Convenience name for target.
-navigation/CMakeFiles/_run_tests_navigation.dir/rule:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/_run_tests_navigation.dir/rule
-.PHONY : navigation/CMakeFiles/_run_tests_navigation.dir/rule
-
-# Convenience name for target.
-_run_tests_navigation: navigation/CMakeFiles/_run_tests_navigation.dir/rule
-
-.PHONY : _run_tests_navigation
-
-# fast build rule for target.
-_run_tests_navigation/fast:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/_run_tests_navigation.dir/build.make navigation/CMakeFiles/_run_tests_navigation.dir/build
-.PHONY : _run_tests_navigation/fast
-
-# Convenience name for target.
 navigation/CMakeFiles/topic_tools_generate_messages_nodejs.dir/rule:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/topic_tools_generate_messages_nodejs.dir/rule
 .PHONY : navigation/CMakeFiles/topic_tools_generate_messages_nodejs.dir/rule
@@ -796,6 +737,21 @@ std_msgs_generate_messages_lisp: navigation/CMakeFiles/std_msgs_generate_message
 std_msgs_generate_messages_lisp/fast:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make navigation/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+navigation/CMakeFiles/run_testing.dir/rule:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/run_testing.dir/rule
+.PHONY : navigation/CMakeFiles/run_testing.dir/rule
+
+# Convenience name for target.
+run_testing: navigation/CMakeFiles/run_testing.dir/rule
+
+.PHONY : run_testing
+
+# fast build rule for target.
+run_testing/fast:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/run_testing.dir/build.make navigation/CMakeFiles/run_testing.dir/build
+.PHONY : run_testing/fast
 
 # Convenience name for target.
 navigation/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
@@ -1263,21 +1219,6 @@ topic_tools_generate_messages_eus/fast:
 .PHONY : topic_tools_generate_messages_eus/fast
 
 # Convenience name for target.
-navigation/CMakeFiles/clean_test_results_navigation.dir/rule:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/clean_test_results_navigation.dir/rule
-.PHONY : navigation/CMakeFiles/clean_test_results_navigation.dir/rule
-
-# Convenience name for target.
-clean_test_results_navigation: navigation/CMakeFiles/clean_test_results_navigation.dir/rule
-
-.PHONY : clean_test_results_navigation
-
-# fast build rule for target.
-clean_test_results_navigation/fast:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/clean_test_results_navigation.dir/build.make navigation/CMakeFiles/clean_test_results_navigation.dir/build
-.PHONY : clean_test_results_navigation/fast
-
-# Convenience name for target.
 navigation/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 .PHONY : navigation/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
@@ -1291,21 +1232,6 @@ geometry_msgs_generate_messages_cpp: navigation/CMakeFiles/geometry_msgs_generat
 geometry_msgs_generate_messages_cpp/fast:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make navigation/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
 .PHONY : geometry_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-navigation/CMakeFiles/navTest.dir/rule:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/navTest.dir/rule
-.PHONY : navigation/CMakeFiles/navTest.dir/rule
-
-# Convenience name for target.
-navTest: navigation/CMakeFiles/navTest.dir/rule
-
-.PHONY : navTest
-
-# fast build rule for target.
-navTest/fast:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/build
-.PHONY : navTest/fast
 
 # Convenience name for target.
 navigation/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
@@ -1658,8 +1584,7 @@ src/Eig.o: src/Eig.cpp.o
 
 # target to build an object file
 src/Eig.cpp.o:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.o
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/Eig.cpp.o
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/Eig.cpp.o
 .PHONY : src/Eig.cpp.o
 
 src/Eig.i: src/Eig.cpp.i
@@ -1668,8 +1593,7 @@ src/Eig.i: src/Eig.cpp.i
 
 # target to preprocess a source file
 src/Eig.cpp.i:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.i
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/Eig.cpp.i
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/Eig.cpp.i
 .PHONY : src/Eig.cpp.i
 
 src/Eig.s: src/Eig.cpp.s
@@ -1678,9 +1602,35 @@ src/Eig.s: src/Eig.cpp.s
 
 # target to generate assembly for a file
 src/Eig.cpp.s:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/Eig.cpp.s
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/Eig.cpp.s
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/Eig.cpp.s
 .PHONY : src/Eig.cpp.s
+
+src/helpers.o: src/helpers.cpp.o
+
+.PHONY : src/helpers.o
+
+# target to build an object file
+src/helpers.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/helpers.cpp.o
+.PHONY : src/helpers.cpp.o
+
+src/helpers.i: src/helpers.cpp.i
+
+.PHONY : src/helpers.i
+
+# target to preprocess a source file
+src/helpers.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/helpers.cpp.i
+.PHONY : src/helpers.cpp.i
+
+src/helpers.s: src/helpers.cpp.s
+
+.PHONY : src/helpers.s
+
+# target to generate assembly for a file
+src/helpers.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/helpers.cpp.s
+.PHONY : src/helpers.cpp.s
 
 src/spacialDual.o: src/spacialDual.cpp.o
 
@@ -1688,8 +1638,7 @@ src/spacialDual.o: src/spacialDual.cpp.o
 
 # target to build an object file
 src/spacialDual.cpp.o:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.o
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/spacialDual.cpp.o
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/spacialDual.cpp.o
 .PHONY : src/spacialDual.cpp.o
 
 src/spacialDual.i: src/spacialDual.cpp.i
@@ -1698,8 +1647,7 @@ src/spacialDual.i: src/spacialDual.cpp.i
 
 # target to preprocess a source file
 src/spacialDual.cpp.i:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.i
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/spacialDual.cpp.i
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/spacialDual.cpp.i
 .PHONY : src/spacialDual.cpp.i
 
 src/spacialDual.s: src/spacialDual.cpp.s
@@ -1708,8 +1656,7 @@ src/spacialDual.s: src/spacialDual.cpp.s
 
 # target to generate assembly for a file
 src/spacialDual.cpp.s:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/spacialDual.cpp.s
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/spacialDual.cpp.s
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/spacialDual.cpp.s
 .PHONY : src/spacialDual.cpp.s
 
 src/spacialDualLocalisation.o: src/spacialDualLocalisation.cpp.o
@@ -1745,8 +1692,7 @@ src/testing.o: src/testing.cpp.o
 
 # target to build an object file
 src/testing.cpp.o:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.o
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/testing.cpp.o
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/testing.cpp.o
 .PHONY : src/testing.cpp.o
 
 src/testing.i: src/testing.cpp.i
@@ -1755,8 +1701,7 @@ src/testing.i: src/testing.cpp.i
 
 # target to preprocess a source file
 src/testing.cpp.i:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.i
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/testing.cpp.i
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/testing.cpp.i
 .PHONY : src/testing.cpp.i
 
 src/testing.s: src/testing.cpp.s
@@ -1765,36 +1710,143 @@ src/testing.s: src/testing.cpp.s
 
 # target to generate assembly for a file
 src/testing.cpp.s:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/src/testing.cpp.s
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/src/testing.cpp.s
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/testing.cpp.s
 .PHONY : src/testing.cpp.s
 
-tests/navTest.o: tests/navTest.cpp.o
+test/src/GPS.o: test/src/GPS.cpp.o
 
-.PHONY : tests/navTest.o
+.PHONY : test/src/GPS.o
 
 # target to build an object file
-tests/navTest.cpp.o:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/tests/navTest.cpp.o
-.PHONY : tests/navTest.cpp.o
+test/src/GPS.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/GPS.cpp.o
+.PHONY : test/src/GPS.cpp.o
 
-tests/navTest.i: tests/navTest.cpp.i
+test/src/GPS.i: test/src/GPS.cpp.i
 
-.PHONY : tests/navTest.i
+.PHONY : test/src/GPS.i
 
 # target to preprocess a source file
-tests/navTest.cpp.i:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/tests/navTest.cpp.i
-.PHONY : tests/navTest.cpp.i
+test/src/GPS.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/GPS.cpp.i
+.PHONY : test/src/GPS.cpp.i
 
-tests/navTest.s: tests/navTest.cpp.s
+test/src/GPS.s: test/src/GPS.cpp.s
 
-.PHONY : tests/navTest.s
+.PHONY : test/src/GPS.s
 
 # target to generate assembly for a file
-tests/navTest.cpp.s:
-	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/navTest.dir/build.make navigation/CMakeFiles/navTest.dir/tests/navTest.cpp.s
-.PHONY : tests/navTest.cpp.s
+test/src/GPS.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/GPS.cpp.s
+.PHONY : test/src/GPS.cpp.s
+
+test/src/eigenAtan2.o: test/src/eigenAtan2.cpp.o
+
+.PHONY : test/src/eigenAtan2.o
+
+# target to build an object file
+test/src/eigenAtan2.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/eigenAtan2.cpp.o
+.PHONY : test/src/eigenAtan2.cpp.o
+
+test/src/eigenAtan2.i: test/src/eigenAtan2.cpp.i
+
+.PHONY : test/src/eigenAtan2.i
+
+# target to preprocess a source file
+test/src/eigenAtan2.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/eigenAtan2.cpp.i
+.PHONY : test/src/eigenAtan2.cpp.i
+
+test/src/eigenAtan2.s: test/src/eigenAtan2.cpp.s
+
+.PHONY : test/src/eigenAtan2.s
+
+# target to generate assembly for a file
+test/src/eigenAtan2.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/eigenAtan2.cpp.s
+.PHONY : test/src/eigenAtan2.cpp.s
+
+test/src/helpingFunctions.o: test/src/helpingFunctions.cpp.o
+
+.PHONY : test/src/helpingFunctions.o
+
+# target to build an object file
+test/src/helpingFunctions.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o
+.PHONY : test/src/helpingFunctions.cpp.o
+
+test/src/helpingFunctions.i: test/src/helpingFunctions.cpp.i
+
+.PHONY : test/src/helpingFunctions.i
+
+# target to preprocess a source file
+test/src/helpingFunctions.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.i
+.PHONY : test/src/helpingFunctions.cpp.i
+
+test/src/helpingFunctions.s: test/src/helpingFunctions.cpp.s
+
+.PHONY : test/src/helpingFunctions.s
+
+# target to generate assembly for a file
+test/src/helpingFunctions.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.s
+.PHONY : test/src/helpingFunctions.cpp.s
+
+test/src/main.o: test/src/main.cpp.o
+
+.PHONY : test/src/main.o
+
+# target to build an object file
+test/src/main.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/main.cpp.o
+.PHONY : test/src/main.cpp.o
+
+test/src/main.i: test/src/main.cpp.i
+
+.PHONY : test/src/main.i
+
+# target to preprocess a source file
+test/src/main.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/main.cpp.i
+.PHONY : test/src/main.cpp.i
+
+test/src/main.s: test/src/main.cpp.s
+
+.PHONY : test/src/main.s
+
+# target to generate assembly for a file
+test/src/main.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/main.cpp.s
+.PHONY : test/src/main.cpp.s
+
+test/src/quaternionConversions.o: test/src/quaternionConversions.cpp.o
+
+.PHONY : test/src/quaternionConversions.o
+
+# target to build an object file
+test/src/quaternionConversions.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o
+.PHONY : test/src/quaternionConversions.cpp.o
+
+test/src/quaternionConversions.i: test/src/quaternionConversions.cpp.i
+
+.PHONY : test/src/quaternionConversions.i
+
+# target to preprocess a source file
+test/src/quaternionConversions.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.i
+.PHONY : test/src/quaternionConversions.cpp.i
+
+test/src/quaternionConversions.s: test/src/quaternionConversions.cpp.s
+
+.PHONY : test/src/quaternionConversions.s
+
+# target to generate assembly for a file
+test/src/quaternionConversions.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.s
+.PHONY : test/src/quaternionConversions.cpp.s
 
 # Help Target
 help:
@@ -1806,12 +1858,8 @@ help:
 	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... run_tests_navigation_gtest_navTest"
-	@echo "... run_tests_navigation_gtest"
-	@echo "... _run_tests_navigation_gtest"
-	@echo "... run_tests_navigation"
+	@echo "... catchTests"
 	@echo "... rebuild_cache"
-	@echo "... _run_tests_navigation_gtest_navTest"
 	@echo "... spacialDualLocalisation"
 	@echo "... navigation_genpy"
 	@echo "... navigation_generate_messages_nodejs"
@@ -1828,6 +1876,7 @@ help:
 	@echo "... actionlib_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_cpp"
 	@echo "... tf_generate_messages_nodejs"
+	@echo "... common"
 	@echo "... tf_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_cpp"
 	@echo "... dynamic_reconfigure_gencfg"
@@ -1838,7 +1887,6 @@ help:
 	@echo "... pcl_ros_gencfg"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... roscpp_generate_messages_eus"
-	@echo "... _run_tests_navigation"
 	@echo "... topic_tools_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... topic_tools_generate_messages_py"
@@ -1849,6 +1897,7 @@ help:
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... dynamic_reconfigure_generate_messages_py"
 	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... run_testing"
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... dynamic_reconfigure_generate_messages_lisp"
 	@echo "... navigation_geneus"
@@ -1880,9 +1929,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... dynamic_reconfigure_generate_messages_cpp"
 	@echo "... topic_tools_generate_messages_eus"
-	@echo "... clean_test_results_navigation"
 	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... navTest"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_nodejs"
@@ -1911,6 +1958,9 @@ help:
 	@echo "... src/Eig.o"
 	@echo "... src/Eig.i"
 	@echo "... src/Eig.s"
+	@echo "... src/helpers.o"
+	@echo "... src/helpers.i"
+	@echo "... src/helpers.s"
 	@echo "... src/spacialDual.o"
 	@echo "... src/spacialDual.i"
 	@echo "... src/spacialDual.s"
@@ -1920,9 +1970,21 @@ help:
 	@echo "... src/testing.o"
 	@echo "... src/testing.i"
 	@echo "... src/testing.s"
-	@echo "... tests/navTest.o"
-	@echo "... tests/navTest.i"
-	@echo "... tests/navTest.s"
+	@echo "... test/src/GPS.o"
+	@echo "... test/src/GPS.i"
+	@echo "... test/src/GPS.s"
+	@echo "... test/src/eigenAtan2.o"
+	@echo "... test/src/eigenAtan2.i"
+	@echo "... test/src/eigenAtan2.s"
+	@echo "... test/src/helpingFunctions.o"
+	@echo "... test/src/helpingFunctions.i"
+	@echo "... test/src/helpingFunctions.s"
+	@echo "... test/src/main.o"
+	@echo "... test/src/main.i"
+	@echo "... test/src/main.s"
+	@echo "... test/src/quaternionConversions.o"
+	@echo "... test/src/quaternionConversions.i"
+	@echo "... test/src/quaternionConversions.s"
 .PHONY : help
 
 
@@ -1934,6 +1996,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	cd /home/cameron/NUMarine_ws/build && $(CMAKE_COMMAND) -P /home/cameron/NUMarine_ws/build/CMakeFiles/VerifyGlobs.cmake
 	cd /home/cameron/NUMarine_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
