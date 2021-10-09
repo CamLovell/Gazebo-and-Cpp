@@ -140,6 +140,7 @@ catchTests_EXTERNAL_OBJECTS =
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/build.make
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: /home/cameron/NUMarine_ws/devel/lib/libcommon.so
+/home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: /usr/local/lib/libGeographic.so.19.2.0
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests"
 	cd /home/cameron/NUMarine_ws/build/navigation && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/catchTests.dir/link.txt --verbose=$(VERBOSE)

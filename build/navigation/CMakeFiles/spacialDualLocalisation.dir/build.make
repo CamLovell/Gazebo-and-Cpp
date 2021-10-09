@@ -196,6 +196,7 @@ spacialDualLocalisation_EXTERNAL_OBJECTS =
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /home/cameron/NUMarine_ws/devel/lib/libcommon.so
+/home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: /usr/local/lib/libGeographic.so.19.2.0
 /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation: navigation/CMakeFiles/spacialDualLocalisation.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/cameron/NUMarine_ws/devel/lib/navigation/spacialDualLocalisation"
 	cd /home/cameron/NUMarine_ws/build/navigation && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/spacialDualLocalisation.dir/link.txt --verbose=$(VERBOSE)

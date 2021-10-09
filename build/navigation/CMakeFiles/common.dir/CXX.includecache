@@ -23,6 +23,10 @@ iostream
 -
 Eigen/Core
 -
+GeographicLib/Geocentric.hpp
+-
+GeographicLib/LocalCartesian.hpp
+-
 spacialDual.h
 /home/cameron/NUMarine_ws/src/navigation/src/spacialDual.h
 sensorData.h

@@ -26,6 +26,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(Catch2 2.13 REQUIRED)
+find_package(GeographicLib REQUIRED NO_MODULE)
 
 
 ## System dependencies are found with CMake's conventions
@@ -138,6 +139,7 @@ include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
+  ${GeographicLib_INCLUDE_DIRS}
   # /usr/include/eigen3
   ${DIR_SRC}
   ${DIR_TEST_SRC}
@@ -152,6 +154,7 @@ set(TARGET_TEST catchTests)
 # Libraries
 set(LIBS
     Eigen3::Eigen
+    ${GeographicLib_LIBRARIES}
 )
 
 # Set appropriate source directories

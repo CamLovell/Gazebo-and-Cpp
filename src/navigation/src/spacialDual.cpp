@@ -2,81 +2,64 @@
 #include <cmath>
 #include <iostream>
 #include <Eigen/Core>
+#include <GeographicLib/Geocentric.hpp>
+#include <GeographicLib/LocalCartesian.hpp>
 
 #include "spacialDual.h"
 #include "sensorData.h"
 #include "helpers.h"
 #include "Eig.hpp"
 
-
+// Converting all of these params to a passable stucture may prove to be a better way
 static Eigen::VectorXd rNOg(3),rNOe(3);
 static Eigen::MatrixXd Rne; //Latitude and longitude of NED origin in vrx sydneyRegatta
-static double a,b,d,f,gpsSigma;
+static double a,b,d,f,gpsSigma, imuSigma;
 static bool isInit;
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // GPS Initialisation Function, change/add any constants here!!
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
-// void gpsInit(void){
-//     // if(!isInit){
-//         rNOg << -33.724223, 150.679736, 0.0; //Geodedic coordinates of NED origin
-//         rotateLatLong(rNOg, Rne);
-//         // rNOe << -4630032, 2600407, -3521046; //ECEF coordinates of NED origin
-//         rNOe << -4630032.213502892,   2600406.528857937,  -3521045.936084332;
-//         //Paramaters to describe earth's elipsoid
-//         a = 6378137.0;
-//         b = 6356752.3142;
-//         d = 0.08181919; 
-//         f = std::sqrt((a*a-b*b)/(b*b));
-//         isInit = true;
-//     // }    
-// }
 void gpsInit(void){
-    // if(!isInit){
-        isInit = true;
+    isInit = true;
+    // Parameters of origin of Sydney Regatta Coordinate System used in VRX
+    rNOe << -4630032.213502892,   2600406.528857937,  -3521045.936084332; //ECEF coordinates of NED origin
+    rNOg << -33.724223, 150.679736, 0.0; //Geodedic coordinates of NED origin
+    rotateLatLong(rNOg, Rne);
+    
+    //Paramaters to describe earth's elipsoid
+    a = 6378137.0;
+    b = 6356752.3142;
+    d = 0.08181919; 
+    f = std::sqrt((a*a-b*b)/(b*b));
+    
+    // Convert GPS accuacy in m to a relevant Lat/Long variance
+    double sigmaNE = 0.08;
+    double sigmaD = 0.1;
+    Eigen::MatrixXd sig(3,1), sigGeo;
+    sig << sigmaNE,sigmaNE,sigmaD;
+    
+    NEDtoGeo(sig,sigGeo);
 
-        rNOe << -4630032.213502892,   2600406.528857937,  -3521045.936084332;
-        rNOg << -33.724223, 150.679736, 0.0; //Geodedic coordinates of NED origin
-        rotateLatLong(rNOg, Rne);
-        
-        // rNOe << -4630032, 2600407, -3521046; //ECEF coordinates of NED origin
-        
-        //Paramaters to describe earth's elipsoid
-        a = 6378137.0;
-        b = 6356752.3142;
-        d = 0.08181919; 
-        f = std::sqrt((a*a-b*b)/(b*b));
-        
-        double sigmaNE = 0.08;
-        double sigmaD = 0.1;
-        Eigen::MatrixXd sig(3,1), sigGeo;
-        sig << 0,0,0;
-        
-        NEDtoGeo(sig,sigGeo);
-
-        gpsSigma = abs(sigGeo(0,0)-rNOg(0));
-        // std::cout << gpsSigma << std::endl;
-        
-        
-    // }    
+    // Covariences of GPS and IMU measurments
+    gpsSigma = (sigGeo.block(0,0,2,1).array()-rNOg.block(0,0,2,1).array()).abs().maxCoeff(); // Assume N and E have same Variance and set to max to account for this
+    imuSigma = 0.1*M_PI/180; // Converted to radians because thats how the world works   
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // Log Likelihoods // Combine these into one maybe? will save 1 funciton call per loop?
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
-    Eigen::MatrixXd partCoords, partWeight;
+    Eigen::MatrixXd partCoords, partWeight, NED;
 
     // Initialise outputs with zeros to avoid any issues with existing memory values
     lw.setZero(M);
+    NED.setZero(3,M);
+    NED.row(0) = x.row(0);
+    NED.row(1) = x.row(1);
 
     // Convert NED coordinates to lat and long as measured
-    NEDtoGeo(x,partCoords);
-    // double sig2 = gpsSigma*gpsSigma; // Include this as a pramater?
+    NEDtoGeo(NED,partCoords);
 
-    // Non-log version
-    // w = (1/sqrt(2*M_PI*gpsSigma*gpsSigma))*(0.5*((partCoords.array().square().colwise()-y.array()))/(gpsSigma*gpsSigma)).exp();
-   
     // Calculate log likelihood 
     partWeight = log(1/sqrt(2*M_PI*gpsSigma*gpsSigma))+(0.5*((partCoords.array().square().colwise()-y.array()))/(gpsSigma*gpsSigma));
 
@@ -89,7 +72,13 @@ void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const i
     }
 }
 void imuLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
+    Eigen::MatrixXd partWeight;
 
+    // Initialise outputs with zeros to avoid any issues with existing memory values
+    lw.setZero(M);
+
+    // Calculate log likelihood 
+    lw = log(1/sqrt(2*M_PI*imuSigma*imuSigma))+(0.5*((x.row(2).array().square().colwise()-y.array()))/(imuSigma*imuSigma));
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -125,12 +114,53 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
 // p.array()/(temp0.array().cos()+cos(rNOg(0))) 
 //(pN.array()/cos(rNOg(0)*M_PI/180))-(p.array()/temp0.array().cos())
 // rBOe.norm()-rNOe.norm()
-
+    temp2 = ((-rBOe.row(2).array()+rNOe.row(2).array())/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
+    // temp2 = (rBOe.row(2).array()/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
     // Alt is dodgy as fuck!!!
     rBOg << temp0*180/M_PI, 2*temp1*180/M_PI,(rBOe.norm()-rNOe.norm()+4.60823*rBNn(2));
+    // rBOg << temp0*180/M_PI, 2*temp1*180/M_PI,temp2;
     // <latitude_deg>-33.724223</latitude_deg>
     // <longitude_deg>150.679736</longitude_deg>
     // <elevation>0.0</elevation>
+
+    // GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
+    // GeographicLib::Geocentric earth(a, f);
+    // GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
+    // double lat, lon, h;
+    // sydneyRegatta.Reverse(rBNn(0),rBNn(1),rBNn(2),lat,lon,h);
+    // rBOg << lat,lon,h;
+}
+
+void geotoNED(const Eigen::MatrixXd& rBOg, Eigen::MatrixXd& rBNn){
+    // Ensure input dimensions are correct
+    assert(isInit);
+    assert(rBOg.rows() == 3);     
+    
+    // Declare Required Variables
+    Eigen::VectorXd N(rBOg.cols());
+    Eigen::MatrixXd rBOe(3,rBOg.cols());
+    rBNn.resize(3,rBOg.cols());  
+
+    N = (a*a)/(a*a*rBOg.row(0).array().cos()*rBOg.row(0).array().cos()+b*b*rBOg.row(0).array().sin()*rBOg.row(0).array().sin()).sqrt();
+
+    rBOe.row(0) = (N.array()+rBOg.row(2).array())*rBOg.row(0).array().cos()*rBOg.row(1).array().cos();
+    rBOe.row(1) = (N.array()+rBOg.row(2).array())*rBOg.row(0).array().cos()*rBOg.row(1).array().sin();
+    rBOe.row(2) = (((b*b)/(a*a))*N.array()+rBOg.row(2).array())*rBOg.row(0).array().sin();
+    
+    std::cout << rBOg << std::endl;
+    // Convert to ECEF coordinates
+    rBNn = Rne.transpose()*(rBOe - rNOe);
+
+    GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
+    // GeographicLib::Geocentric earth(a, f);
+    GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
+    double x, y, z;
+    sydneyRegatta.Forward(rBOg(0),rBOg(1),rBOg(2),x, y, z);
+    std::cout << x << " " << y << " " << z << std::endl;
+    // std::cout << rBNn << std::endl;
+    rBNn << y, x, z;
+    
+
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
