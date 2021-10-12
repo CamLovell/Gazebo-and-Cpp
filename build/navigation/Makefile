@@ -304,6 +304,21 @@ tf2_msgs_generate_messages_lisp/fast:
 .PHONY : tf2_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
+navigation/CMakeFiles/_navigation_generate_messages_check_deps_state.dir/rule:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/_navigation_generate_messages_check_deps_state.dir/rule
+.PHONY : navigation/CMakeFiles/_navigation_generate_messages_check_deps_state.dir/rule
+
+# Convenience name for target.
+_navigation_generate_messages_check_deps_state: navigation/CMakeFiles/_navigation_generate_messages_check_deps_state.dir/rule
+
+.PHONY : _navigation_generate_messages_check_deps_state
+
+# fast build rule for target.
+_navigation_generate_messages_check_deps_state/fast:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/_navigation_generate_messages_check_deps_state.dir/build.make navigation/CMakeFiles/_navigation_generate_messages_check_deps_state.dir/build
+.PHONY : _navigation_generate_messages_check_deps_state/fast
+
+# Convenience name for target.
 navigation/CMakeFiles/_catkin_empty_exported_target.dir/rule:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/_catkin_empty_exported_target.dir/rule
 .PHONY : navigation/CMakeFiles/_catkin_empty_exported_target.dir/rule
@@ -1632,6 +1647,33 @@ src/helpers.cpp.s:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/helpers.cpp.s
 .PHONY : src/helpers.cpp.s
 
+src/particleFilter.o: src/particleFilter.cpp.o
+
+.PHONY : src/particleFilter.o
+
+# target to build an object file
+src/particleFilter.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o
+.PHONY : src/particleFilter.cpp.o
+
+src/particleFilter.i: src/particleFilter.cpp.i
+
+.PHONY : src/particleFilter.i
+
+# target to preprocess a source file
+src/particleFilter.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/particleFilter.cpp.i
+.PHONY : src/particleFilter.cpp.i
+
+src/particleFilter.s: src/particleFilter.cpp.s
+
+.PHONY : src/particleFilter.s
+
+# target to generate assembly for a file
+src/particleFilter.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/particleFilter.cpp.s
+.PHONY : src/particleFilter.cpp.s
+
 src/spacialDual.o: src/spacialDual.cpp.o
 
 .PHONY : src/spacialDual.o
@@ -1712,6 +1754,33 @@ src/testing.s: src/testing.cpp.s
 src/testing.cpp.s:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/testing.cpp.s
 .PHONY : src/testing.cpp.s
+
+src/wamv.o: src/wamv.cpp.o
+
+.PHONY : src/wamv.o
+
+# target to build an object file
+src/wamv.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/wamv.cpp.o
+.PHONY : src/wamv.cpp.o
+
+src/wamv.i: src/wamv.cpp.i
+
+.PHONY : src/wamv.i
+
+# target to preprocess a source file
+src/wamv.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/wamv.cpp.i
+.PHONY : src/wamv.cpp.i
+
+src/wamv.s: src/wamv.cpp.s
+
+.PHONY : src/wamv.s
+
+# target to generate assembly for a file
+src/wamv.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/wamv.cpp.s
+.PHONY : src/wamv.cpp.s
 
 test/src/GPS.o: test/src/GPS.cpp.o
 
@@ -1848,6 +1917,33 @@ test/src/quaternionConversions.cpp.s:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.s
 .PHONY : test/src/quaternionConversions.cpp.s
 
+test/src/wamv.o: test/src/wamv.cpp.o
+
+.PHONY : test/src/wamv.o
+
+# target to build an object file
+test/src/wamv.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.o
+.PHONY : test/src/wamv.cpp.o
+
+test/src/wamv.i: test/src/wamv.cpp.i
+
+.PHONY : test/src/wamv.i
+
+# target to preprocess a source file
+test/src/wamv.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.i
+.PHONY : test/src/wamv.cpp.i
+
+test/src/wamv.s: test/src/wamv.cpp.s
+
+.PHONY : test/src/wamv.s
+
+# target to generate assembly for a file
+test/src/wamv.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.s
+.PHONY : test/src/wamv.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1868,6 +1964,7 @@ help:
 	@echo "... navigation_generate_messages_cpp"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... _navigation_generate_messages_check_deps_state"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_cpp"
@@ -1961,6 +2058,9 @@ help:
 	@echo "... src/helpers.o"
 	@echo "... src/helpers.i"
 	@echo "... src/helpers.s"
+	@echo "... src/particleFilter.o"
+	@echo "... src/particleFilter.i"
+	@echo "... src/particleFilter.s"
 	@echo "... src/spacialDual.o"
 	@echo "... src/spacialDual.i"
 	@echo "... src/spacialDual.s"
@@ -1970,6 +2070,9 @@ help:
 	@echo "... src/testing.o"
 	@echo "... src/testing.i"
 	@echo "... src/testing.s"
+	@echo "... src/wamv.o"
+	@echo "... src/wamv.i"
+	@echo "... src/wamv.s"
 	@echo "... test/src/GPS.o"
 	@echo "... test/src/GPS.i"
 	@echo "... test/src/GPS.s"
@@ -1985,6 +2088,9 @@ help:
 	@echo "... test/src/quaternionConversions.o"
 	@echo "... test/src/quaternionConversions.i"
 	@echo "... test/src/quaternionConversions.s"
+	@echo "... test/src/wamv.o"
+	@echo "... test/src/wamv.i"
+	@echo "... test/src/wamv.s"
 .PHONY : help
 
 

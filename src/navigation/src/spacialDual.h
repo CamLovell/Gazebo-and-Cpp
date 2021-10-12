@@ -5,7 +5,7 @@
 
 void gpsInit(void);
 void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw);
-void imuLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw);
+void imuLogLiklihood(const Eigen::MatrixXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw);
 
 void rotateLatLong(const Eigen::VectorXd& geoCoordDeg, Eigen::MatrixXd& R);
 void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg);

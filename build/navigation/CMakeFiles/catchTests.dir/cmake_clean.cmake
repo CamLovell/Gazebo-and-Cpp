@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o"
   "CMakeFiles/catchTests.dir/test/src/main.cpp.o"
   "CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o"
+  "CMakeFiles/catchTests.dir/test/src/wamv.cpp.o"
 )
 
 # Per-language clean rules from dependency scanning.

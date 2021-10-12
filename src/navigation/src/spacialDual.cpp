@@ -50,7 +50,6 @@ void gpsInit(void){
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
     Eigen::MatrixXd partCoords, partWeight, NED;
-
     // Initialise outputs with zeros to avoid any issues with existing memory values
     lw.setZero(M);
     NED.setZero(3,M);
@@ -71,14 +70,21 @@ void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const i
         lw(i) = logSumExponential(temp);
     }
 }
-void imuLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
+// IMU log likelihood calculation expecting quaternion input [w x y z]^T
+void imuLogLiklihood(const Eigen::MatrixXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
     Eigen::MatrixXd partWeight;
+    assert(y.rows() == 4);
+    assert(y.cols() == 1);
 
     // Initialise outputs with zeros to avoid any issues with existing memory values
     lw.setZero(M);
+    Eigen::MatrixXd RPY;
+    quaterniontoRPY(y,RPY);
+    assert(RPY.rows() == 3);
+    assert(RPY.cols() == 1);
 
     // Calculate log likelihood 
-    lw = log(1/sqrt(2*M_PI*imuSigma*imuSigma))+(0.5*((x.row(2).array().square().colwise()-y.array()))/(imuSigma*imuSigma));
+    lw = log(1/sqrt(2*M_PI*imuSigma*imuSigma))+(0.5*((x.row(2).array().square()-RPY(2)))/(imuSigma*imuSigma));
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -91,13 +97,16 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     
     // Declare Required Variables
     Eigen::VectorXd p(rBNn.cols()), theta(rBNn.cols()), pN(rBNn.cols()), sintheta3(rBNn.cols()), costheta3(rBNn.cols()), temp0, temp1, temp2;
-    Eigen::MatrixXd rBOe(3,rBNn.cols());  
+    Eigen::MatrixXd rBOe(rBNn.cols(),3);  
     
     // Convert to ECEF coordinates
-    rBOe = Rne*rBNn + rNOe;
-    
+    // std::cout << (Rne*rBNn + rNOe << "\n" << std::endl;
+    // std::cout << rNOe << "\n" << std::endl;
+    rBOe = (Rne*rBNn).colwise() + rNOe;
+    // rBOe = Rne*rBNn + rNOe;
+
     // Calculate ECEF paramaters
-    p = (rBOe.row(0).array().square()+rBOe.row(1).array().square()).sqrt().matrix();
+    p = (rBOe.row(0).transpose().array().square()+rBOe.row(1).transpose().array().square()).sqrt().matrix();
     pN = (rNOe.row(0).array().square()+rNOe.row(1).array().square()).sqrt().matrix();
     Eig::atan2(a*rBOe.row(2),b*p,theta); // custom eigen elementwise atan2
     
@@ -106,18 +115,23 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     sintheta3 = (theta.array().sin().square()*theta.array().sin()).matrix();
     costheta3 = (theta.array().cos().square()*theta.array().cos()).matrix();
 
-    Eig::atan2(rBOe.row(2).array()+f*f*b*sintheta3.array(),p.array()-d*d*a*costheta3.array(),temp0);
-    Eig::atan2(rBOe.row(1),p+rBOe.row(0),temp1);
+    Eig::atan2(rBOe.row(2).transpose().array()+f*f*b*sintheta3.array(),p.array()-d*d*a*costheta3.array(),temp0);
+    Eig::atan2(rBOe.row(1).transpose(),p+rBOe.row(0).transpose(),temp1);
+
 
     //!!Altitude measurement is broken however this is not used in the boat model so not a big deal for now!!
     //// rBOg.row(2) = ((p.array()/temp0.array().cos()))+(pN.array()/((rNOe.row(0).array()*(M_PI/180)).cos()))).matrix();
 // p.array()/(temp0.array().cos()+cos(rNOg(0))) 
 //(pN.array()/cos(rNOg(0)*M_PI/180))-(p.array()/temp0.array().cos())
 // rBOe.norm()-rNOe.norm()
-    temp2 = ((-rBOe.row(2).array()+rNOe.row(2).array())/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
+
+    // temp2 = ((-rBOe.row(2).transpose().array()+rNOe.row(2).transpose().array())/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
     // temp2 = (rBOe.row(2).array()/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
     // Alt is dodgy as fuck!!!
-    rBOg << temp0*180/M_PI, 2*temp1*180/M_PI,(rBOe.norm()-rNOe.norm()+4.60823*rBNn(2));
+
+    rBOg << temp0.transpose()*180/M_PI, 2*temp1.transpose()*180/M_PI,(rBOe.colwise().norm().array()-rNOe.norm()+4.60823*rBNn(2));
+    // std::cout << rBOg << std::endl;
+
     // rBOg << temp0*180/M_PI, 2*temp1*180/M_PI,temp2;
     // <latitude_deg>-33.724223</latitude_deg>
     // <longitude_deg>150.679736</longitude_deg>
@@ -131,6 +145,7 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     // rBOg << lat,lon,h;
 }
 
+// Mad broken
 void geotoNED(const Eigen::MatrixXd& rBOg, Eigen::MatrixXd& rBNn){
     // Ensure input dimensions are correct
     assert(isInit);

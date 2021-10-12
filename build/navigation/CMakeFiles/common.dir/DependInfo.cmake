@@ -6,8 +6,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/cameron/NUMarine_ws/src/navigation/src/Eig.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/common.dir/src/Eig.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/src/helpers.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/common.dir/src/helpers.cpp.o"
+  "/home/cameron/NUMarine_ws/src/navigation/src/particleFilter.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/src/spacialDual.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/common.dir/src/spacialDual.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/src/testing.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/common.dir/src/testing.cpp.o"
+  "/home/cameron/NUMarine_ws/src/navigation/src/wamv.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/common.dir/src/wamv.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -21,6 +23,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/cameron/NUMarine_ws/devel/include"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/eigen3"

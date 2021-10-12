@@ -5,11 +5,12 @@
 
 void weightedResample(const Eigen::VectorXd& logWeights, const int& N, Eigen::Matrix<int,Eigen::Dynamic,1>& idx){
     
-    std::srand((unsigned int) time(0));
+    std::srand((unsigned int) time(nullptr));
     // Declare nessecary variables
-    Eigen::VectorXd sample(N+1),tempLin,tempRand(N);
+    Eigen::VectorXd sample(N+1),tempLin,tempRand(N), weights;
     int i=0,j=0;
-    double sum = logWeights(0);
+    weights = logWeights.array().exp();
+    double sum = weights(0);
     
     // Set output to correct size and fill with "-1" for error checking of output
     idx.resize(N);
@@ -29,7 +30,7 @@ void weightedResample(const Eigen::VectorXd& logWeights, const int& N, Eigen::Ma
             j++;
             // Add next weight to sum for next cumulative sum element
             // Hack as Eigen does not have cumulative sum functionality
-            sum += logWeights(j);
+            sum += weights(j);
             
 
         }
@@ -43,5 +44,4 @@ double logSumExponential(const Eigen::VectorXd& logWeights){ // Rework to take M
     double maxW = logWeights.maxCoeff(); 
 
     return (maxW + log((logWeights.array()-maxW).exp().sum()));
-
 }

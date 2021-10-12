@@ -1,16 +1,19 @@
 #include <catch2/catch.hpp>
 #include <Eigen/Core>
+#include <iostream>
 #include "helpers.h"
 
 SCENARIO("Testing weighted resample") {
     GIVEN("Equal wieghted input"){
-        Eigen::VectorXd w(10);
+        Eigen::VectorXd w(10), lw;
         Eigen::Matrix<int,Eigen::Dynamic,1> idx;
         int N=10;
         w.fill(0.1);
+        lw = w.array().log();
+
         // w(0)=0.1;
         WHEN("Calling weighted resample"){
-            weightedResample(w,N,idx);
+            weightedResample(lw,N,idx);
             REQUIRE(idx.rows() == N);
             REQUIRE(idx.cols() == 1);
 
@@ -30,13 +33,15 @@ SCENARIO("Testing weighted resample") {
     // std::cout << idx << std::endl;
     }
     GIVEN("Varied wieghted input"){
-        Eigen::VectorXd w(10);
+        Eigen::VectorXd w(10), lw;
         Eigen::Matrix<int,Eigen::Dynamic,1> idx;
         int N=10;
         w << 0.5,0.4,0.1/9,0.1/9,0.1/9,0.1/9,0.1/9,0.1/9,0.1/9,0.1/9;
+        lw = w.array().log();
+
         // w(0)=0.1;
         WHEN("Calling weighted resample"){
-            weightedResample(w,N,idx);
+            weightedResample(lw,N,idx);
             REQUIRE(idx.rows() == N);
             REQUIRE(idx.cols() == 1);
 
@@ -66,7 +71,7 @@ SCENARIO("Normalising with Log sum exponential"){
         WHEN("Calculating LSE"){
             double out = logSumExponential(lw);
             THEN("Correct output"){
-                CHECK(out == Approx(0.0));
+                CHECK(out == Approx(0.0).margin(1e-15));// Failed with just "Approx(0.0)" giving error of 2e-16??
             }
         }
     }

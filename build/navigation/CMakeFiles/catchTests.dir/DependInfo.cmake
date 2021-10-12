@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/cameron/NUMarine_ws/src/navigation/test/src/helpingFunctions.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/main.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/main.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/quaternionConversions.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o"
+  "/home/cameron/NUMarine_ws/src/navigation/test/src/wamv.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -21,6 +22,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/cameron/NUMarine_ws/devel/include"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/pcl-1.10"

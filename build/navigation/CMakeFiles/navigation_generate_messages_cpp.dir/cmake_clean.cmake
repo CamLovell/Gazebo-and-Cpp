@@ -1,3 +1,7 @@
+file(REMOVE_RECURSE
+  "/home/cameron/NUMarine_ws/devel/include/navigation/state.h"
+  "CMakeFiles/navigation_generate_messages_cpp"
+)
 
 # Per-language clean rules from dependency scanning.
 foreach(lang )

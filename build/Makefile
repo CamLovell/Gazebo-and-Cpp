@@ -403,6 +403,19 @@ tf2_msgs_generate_messages_lisp/fast:
 .PHONY : tf2_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named _navigation_generate_messages_check_deps_state
+
+# Build rule for target.
+_navigation_generate_messages_check_deps_state: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _navigation_generate_messages_check_deps_state
+.PHONY : _navigation_generate_messages_check_deps_state
+
+# fast build rule for target.
+_navigation_generate_messages_check_deps_state/fast:
+	$(MAKE) -f navigation/CMakeFiles/_navigation_generate_messages_check_deps_state.dir/build.make navigation/CMakeFiles/_navigation_generate_messages_check_deps_state.dir/build
+.PHONY : _navigation_generate_messages_check_deps_state/fast
+
+#=============================================================================
 # Target rules for targets named _catkin_empty_exported_target
 
 # Build rule for target.
@@ -1694,6 +1707,7 @@ help:
 	@echo "... navigation_generate_messages_cpp"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... _navigation_generate_messages_check_deps_state"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_cpp"

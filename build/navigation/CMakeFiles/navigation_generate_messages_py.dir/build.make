@@ -53,6 +53,23 @@ CMAKE_BINARY_DIR = /home/cameron/NUMarine_ws/build
 # Include the progress variables for this target.
 include navigation/CMakeFiles/navigation_generate_messages_py.dir/progress.make
 
+navigation/CMakeFiles/navigation_generate_messages_py: /home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/_state.py
+navigation/CMakeFiles/navigation_generate_messages_py: /home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/__init__.py
+
+
+/home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/_state.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/_state.py: /home/cameron/NUMarine_ws/src/navigation/msg/state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG navigation/state"
+	cd /home/cameron/NUMarine_ws/build/navigation && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/cameron/NUMarine_ws/src/navigation/msg/state.msg -Inavigation:/home/cameron/NUMarine_ws/src/navigation/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p navigation -o /home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg
+
+/home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/__init__.py: /home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/_state.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python msg __init__.py for navigation"
+	cd /home/cameron/NUMarine_ws/build/navigation && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg --initpy
+
+navigation_generate_messages_py: navigation/CMakeFiles/navigation_generate_messages_py
+navigation_generate_messages_py: /home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/_state.py
+navigation_generate_messages_py: /home/cameron/NUMarine_ws/devel/lib/python3/dist-packages/navigation/msg/__init__.py
 navigation_generate_messages_py: navigation/CMakeFiles/navigation_generate_messages_py.dir/build.make
 
 .PHONY : navigation_generate_messages_py

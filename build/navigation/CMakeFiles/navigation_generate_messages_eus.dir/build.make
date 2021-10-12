@@ -53,14 +53,21 @@ CMAKE_BINARY_DIR = /home/cameron/NUMarine_ws/build
 # Include the progress variables for this target.
 include navigation/CMakeFiles/navigation_generate_messages_eus.dir/progress.make
 
+navigation/CMakeFiles/navigation_generate_messages_eus: /home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation/msg/state.l
 navigation/CMakeFiles/navigation_generate_messages_eus: /home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation/manifest.l
 
 
+/home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation/msg/state.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation/msg/state.l: /home/cameron/NUMarine_ws/src/navigation/msg/state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from navigation/state.msg"
+	cd /home/cameron/NUMarine_ws/build/navigation && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/cameron/NUMarine_ws/src/navigation/msg/state.msg -Inavigation:/home/cameron/NUMarine_ws/src/navigation/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p navigation -o /home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation/msg
+
 /home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp manifest code for navigation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for navigation"
 	cd /home/cameron/NUMarine_ws/build/navigation && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation navigation std_msgs
 
 navigation_generate_messages_eus: navigation/CMakeFiles/navigation_generate_messages_eus
+navigation_generate_messages_eus: /home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation/msg/state.l
 navigation_generate_messages_eus: /home/cameron/NUMarine_ws/devel/share/roseus/ros/navigation/manifest.l
 navigation_generate_messages_eus: navigation/CMakeFiles/navigation_generate_messages_eus.dir/build.make
 

@@ -69,6 +69,7 @@
         "future": "cpp",
         "memory_resource": "cpp",
         "regex": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "random": "cpp"
     }
 }

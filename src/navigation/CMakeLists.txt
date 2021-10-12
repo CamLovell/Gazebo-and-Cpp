@@ -23,6 +23,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  message_generation
 )
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(Catch2 2.13 REQUIRED)
@@ -63,11 +64,12 @@ find_package(GeographicLib REQUIRED NO_MODULE)
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+# set(DIR_MSG msg)
+# file(GLOB MSG_BIN CONFIGURE_DEPENDS ${DIR_MSG}/*.msg)
+add_message_files(
+  FILES
+  state.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -82,6 +84,8 @@ find_package(GeographicLib REQUIRED NO_MODULE)
 #   Action1.action
 #   Action2.action
 # )
+
+
 
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
