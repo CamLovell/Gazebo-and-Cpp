@@ -979,6 +979,21 @@ std_srvs_generate_messages_py/fast:
 .PHONY : std_srvs_generate_messages_py/fast
 
 # Convenience name for target.
+navigation/CMakeFiles/writer.dir/rule:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/writer.dir/rule
+.PHONY : navigation/CMakeFiles/writer.dir/rule
+
+# Convenience name for target.
+writer: navigation/CMakeFiles/writer.dir/rule
+
+.PHONY : writer
+
+# fast build rule for target.
+writer/fast:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/build
+.PHONY : writer/fast
+
+# Convenience name for target.
 navigation/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 .PHONY : navigation/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
@@ -1782,6 +1797,33 @@ src/wamv.cpp.s:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/wamv.cpp.s
 .PHONY : src/wamv.cpp.s
 
+src/writer.o: src/writer.cpp.o
+
+.PHONY : src/writer.o
+
+# target to build an object file
+src/writer.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/src/writer.cpp.o
+.PHONY : src/writer.cpp.o
+
+src/writer.i: src/writer.cpp.i
+
+.PHONY : src/writer.i
+
+# target to preprocess a source file
+src/writer.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/src/writer.cpp.i
+.PHONY : src/writer.cpp.i
+
+src/writer.s: src/writer.cpp.s
+
+.PHONY : src/writer.s
+
+# target to generate assembly for a file
+src/writer.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/src/writer.cpp.s
+.PHONY : src/writer.cpp.s
+
 test/src/GPS.o: test/src/GPS.cpp.o
 
 .PHONY : test/src/GPS.o
@@ -2009,6 +2051,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_py"
+	@echo "... writer"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... tf_generate_messages_cpp"
@@ -2073,6 +2116,9 @@ help:
 	@echo "... src/wamv.o"
 	@echo "... src/wamv.i"
 	@echo "... src/wamv.s"
+	@echo "... src/writer.o"
+	@echo "... src/writer.i"
+	@echo "... src/writer.s"
 	@echo "... test/src/GPS.o"
 	@echo "... test/src/GPS.i"
 	@echo "... test/src/GPS.s"

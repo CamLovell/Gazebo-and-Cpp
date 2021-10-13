@@ -42,6 +42,8 @@ void weightedResample(const Eigen::VectorXd& logWeights, const int& N, Eigen::Ma
 double logSumExponential(const Eigen::VectorXd& logWeights){ // Rework to take Matrix of weight vectors maybe?
     // Find maximum weight
     double maxW = logWeights.maxCoeff(); 
-
-    return (maxW + log((logWeights.array()-maxW).exp().sum()));
+    double out = (maxW + log((logWeights.array()-maxW).exp().sum()));
+    
+    
+    return out;
 }

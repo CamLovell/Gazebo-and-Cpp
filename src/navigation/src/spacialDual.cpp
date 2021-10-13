@@ -42,6 +42,7 @@ void gpsInit(void){
 
     // Covariences of GPS and IMU measurments
     gpsSigma = (sigGeo.block(0,0,2,1).array()-rNOg.block(0,0,2,1).array()).abs().maxCoeff(); // Assume N and E have same Variance and set to max to account for this
+    // gpsSigma = 1e-10; // Assume N and E have same Variance and set to max to account for this
     imuSigma = 0.1*M_PI/180; // Converted to radians because thats how the world works   
 }
 
@@ -60,15 +61,20 @@ void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const i
     NEDtoGeo(NED,partCoords);
 
     // Calculate log likelihood 
-    partWeight = log(1/sqrt(2*M_PI*gpsSigma*gpsSigma))+(0.5*((partCoords.array().square().colwise()-y.array()))/(gpsSigma*gpsSigma));
+    partWeight = log(1/sqrt(2*M_PI*gpsSigma*gpsSigma))+(-0.5*(((partCoords.block(0,0,2,M).array().colwise()-y.segment(0,2).array())).square())/(gpsSigma*gpsSigma));
+    // std::cout << 1000*(partCoords.block(0,0,2,M).array().colwise()-y.segment(0,2).array()) << "\n" << std::endl;
+    // std::cout << partWeight << "\n" << std::endl;
 
     // Hacky loop for poor LSE implementation, need to look at matrix input LSE
     for(int i = 0; i<M; i++){
         Eigen::VectorXd temp;
         temp = partWeight.col(i);
+        // std::cout << temp << std::endl;
+        // lw(i) = logSumExponential(temp);
+        lw(i) = temp(0)+10*temp(1);
 
-        lw(i) = logSumExponential(temp);
     }
+        // std::cout << lw << "\n" << std::endl;
 }
 // IMU log likelihood calculation expecting quaternion input [w x y z]^T
 void imuLogLiklihood(const Eigen::MatrixXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
@@ -83,8 +89,15 @@ void imuLogLiklihood(const Eigen::MatrixXd& y, const Eigen::MatrixXd& x, const i
     assert(RPY.rows() == 3);
     assert(RPY.cols() == 1);
 
+    // P = (1./sqrt(2.*pi.*params.sigmaHead.^2)).*exp(-0.5.*((y-psi_part(k)).^2)./params.sigmaHead.^2);
+
     // Calculate log likelihood 
-    lw = log(1/sqrt(2*M_PI*imuSigma*imuSigma))+(0.5*((x.row(2).array().square()-RPY(2)))/(imuSigma*imuSigma));
+    // lw = (1/sqrt(2*M_PI*imuSigma*imuSigma)*(-0.5*((x.row(2).array()-RPY(2)).square())/(imuSigma*imuSigma)).exp());
+    // lw = lw.array().log();
+    // std::cout << x.row(2).array()-RPY(2) << std::endl;
+    lw = log(1/sqrt(2*M_PI*imuSigma*imuSigma))+(-0.5*((x.row(2).array()-RPY(2)).square())/(imuSigma*imuSigma));
+    // std::cout << lw << std::endl;
+
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------

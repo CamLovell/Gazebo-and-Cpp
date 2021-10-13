@@ -11,6 +11,7 @@ set(OLD_GLOB
   "/home/cameron/NUMarine_ws/src/navigation/src/spacialDualLocalisation.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/src/testing.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/src/wamv.cpp"
+  "/home/cameron/NUMarine_ws/src/navigation/src/writer.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -42,7 +43,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/cameron/NUMarine_ws/build/CMakeFiles/cmake.verify_globs")
 endif()
 
-# SRC_TEST at navigation/CMakeLists.txt:291 (file)
+# SRC_TEST at navigation/CMakeLists.txt:300 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/cameron/NUMarine_ws/src/navigation/test/src/*.cpp")
 set(OLD_GLOB
   "/home/cameron/NUMarine_ws/src/navigation/test/src/GPS.cpp"
@@ -57,7 +58,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/cameron/NUMarine_ws/build/CMakeFiles/cmake.verify_globs")
 endif()
 
-# SRC_TEST at navigation/CMakeLists.txt:291 (file)
+# SRC_TEST at navigation/CMakeLists.txt:300 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/cameron/NUMarine_ws/src/navigation/test/src/*.h")
 set(OLD_GLOB
   )
@@ -66,7 +67,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/cameron/NUMarine_ws/build/CMakeFiles/cmake.verify_globs")
 endif()
 
-# SRC_TEST at navigation/CMakeLists.txt:291 (file)
+# SRC_TEST at navigation/CMakeLists.txt:300 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/cameron/NUMarine_ws/src/navigation/test/src/*.hpp")
 set(OLD_GLOB
   )

@@ -94,6 +94,7 @@
 /home/cameron/NUMarine_ws/build/navigation/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir
 /home/cameron/NUMarine_ws/build/navigation/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir
 /home/cameron/NUMarine_ws/build/navigation/CMakeFiles/std_srvs_generate_messages_py.dir
+/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/writer.dir
 /home/cameron/NUMarine_ws/build/navigation/CMakeFiles/roscpp_generate_messages_nodejs.dir
 /home/cameron/NUMarine_ws/build/navigation/CMakeFiles/geometry_msgs_generate_messages_lisp.dir
 /home/cameron/NUMarine_ws/build/navigation/CMakeFiles/tf_generate_messages_cpp.dir

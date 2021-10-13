@@ -15,9 +15,11 @@ void intiBoat(boatParams& params){
     params.rRCb << -l,d/2,0;
     
     params.sigmaU.resize(4);
-    params.sigmaU << 2,0.01,2,0.01;
+    params.sigmaU << 200,0.5,200,0.5;
     params.sigmaX.resize(6);
     params.sigmaX << 0.5,0.5,0.1*M_PI/180,0.001,0.001,0.001;
+    // params.sigmaX << 5,5,1*M_PI/180,0.1,0.1,0.1;
+    // params.sigmaX.setZero();
 
 }
 // Vectorised Boat Dynamics to deal with particle input
@@ -55,7 +57,7 @@ void processModel(const Eigen::MatrixXd& xt, const Eigen::MatrixXd& u, const boa
     Eigen::MatrixXd ustep, dx, xTemp(xt.rows(),xt.cols());
 
     // Assign initial input to resused input variable
-    ustep = u;
+    ustep = u*1000;
     
     // Setup normal distributions usable with eigen matricies
     std::srand((unsigned int) time(nullptr));

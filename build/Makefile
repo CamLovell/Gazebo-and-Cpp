@@ -988,6 +988,19 @@ std_srvs_generate_messages_py/fast:
 .PHONY : std_srvs_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named writer
+
+# Build rule for target.
+writer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 writer
+.PHONY : writer
+
+# fast build rule for target.
+writer/fast:
+	$(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/build
+.PHONY : writer/fast
+
+#=============================================================================
 # Target rules for targets named roscpp_generate_messages_nodejs
 
 # Build rule for target.
@@ -1752,6 +1765,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_py"
+	@echo "... writer"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... tf_generate_messages_cpp"

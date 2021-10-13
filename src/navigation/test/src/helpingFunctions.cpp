@@ -1,6 +1,7 @@
 #include <catch2/catch.hpp>
 #include <Eigen/Core>
 #include <iostream>
+#include <fstream>
 #include "helpers.h"
 
 SCENARIO("Testing weighted resample") {
@@ -28,10 +29,12 @@ SCENARIO("Testing weighted resample") {
                 CHECK(idx(7) == 7);
                 CHECK(idx(8) == 8);
                 CHECK(idx(9) == 9);
+
             }
         }
     // std::cout << idx << std::endl;
     }
+    
     GIVEN("Varied wieghted input"){
         Eigen::VectorXd w(10), lw;
         Eigen::Matrix<int,Eigen::Dynamic,1> idx;

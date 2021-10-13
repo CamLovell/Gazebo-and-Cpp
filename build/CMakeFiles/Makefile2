@@ -147,6 +147,7 @@ navigation/all: navigation/CMakeFiles/spacialDualLocalisation.dir/all
 navigation/all: navigation/CMakeFiles/common.dir/all
 navigation/all: navigation/CMakeFiles/run_testing.dir/all
 navigation/all: navigation/CMakeFiles/navigation_generate_messages.dir/all
+navigation/all: navigation/CMakeFiles/writer.dir/all
 
 .PHONY : navigation/all
 
@@ -210,6 +211,7 @@ navigation/clean: navigation/CMakeFiles/actionlib_generate_messages_eus.dir/clea
 navigation/clean: navigation/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
 navigation/clean: navigation/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
 navigation/clean: navigation/CMakeFiles/std_srvs_generate_messages_py.dir/clean
+navigation/clean: navigation/CMakeFiles/writer.dir/clean
 navigation/clean: navigation/CMakeFiles/roscpp_generate_messages_nodejs.dir/clean
 navigation/clean: navigation/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
 navigation/clean: navigation/CMakeFiles/tf_generate_messages_cpp.dir/clean
@@ -2014,6 +2016,34 @@ std_srvs_generate_messages_py: navigation/CMakeFiles/std_srvs_generate_messages_
 navigation/CMakeFiles/std_srvs_generate_messages_py.dir/clean:
 	$(MAKE) -f navigation/CMakeFiles/std_srvs_generate_messages_py.dir/build.make navigation/CMakeFiles/std_srvs_generate_messages_py.dir/clean
 .PHONY : navigation/CMakeFiles/std_srvs_generate_messages_py.dir/clean
+
+#=============================================================================
+# Target rules for target navigation/CMakeFiles/writer.dir
+
+# All Build rule for target.
+navigation/CMakeFiles/writer.dir/all: navigation/CMakeFiles/navigation_generate_messages_cpp.dir/all
+navigation/CMakeFiles/writer.dir/all: navigation/CMakeFiles/common.dir/all
+	$(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/depend
+	$(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=36,37 "Built target writer"
+.PHONY : navigation/CMakeFiles/writer.dir/all
+
+# Build rule for subdir invocation for target.
+navigation/CMakeFiles/writer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 10
+	$(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/writer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 0
+.PHONY : navigation/CMakeFiles/writer.dir/rule
+
+# Convenience name for target.
+writer: navigation/CMakeFiles/writer.dir/rule
+
+.PHONY : writer
+
+# clean rule for target.
+navigation/CMakeFiles/writer.dir/clean:
+	$(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/clean
+.PHONY : navigation/CMakeFiles/writer.dir/clean
 
 #=============================================================================
 # Target rules for target navigation/CMakeFiles/roscpp_generate_messages_nodejs.dir

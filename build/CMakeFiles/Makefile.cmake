@@ -383,6 +383,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "navigation/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/DependInfo.cmake"
   "navigation/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/DependInfo.cmake"
   "navigation/CMakeFiles/std_srvs_generate_messages_py.dir/DependInfo.cmake"
+  "navigation/CMakeFiles/writer.dir/DependInfo.cmake"
   "navigation/CMakeFiles/roscpp_generate_messages_nodejs.dir/DependInfo.cmake"
   "navigation/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/DependInfo.cmake"
   "navigation/CMakeFiles/tf_generate_messages_cpp.dir/DependInfo.cmake"

@@ -43,17 +43,6 @@ void rAngleCallback(const std_msgs::Float32::ConstPtr& angleMsg){
     u(3) = angleMsg->data;
 }
 
-
-void nedCallBack(const gazebo_msgs::ModelStates::ConstPtr& nedMsg){
-    // Eigen::MatrixXd rBNn(3,1), rBOg;
-    // rBNn << nedMsg->pose[11].position.x, nedMsg->pose[11].position.y, nedMsg->pose[11].position.z; 
-    // // rBNn.setZero();
-    // NEDtoGeo(rBNn, rBOg);
-    // ROS_INFO("Lat = %.6f\nLong = %.6f\nAlt = %.6f\n", rBOg(0),rBOg(1),rBOg(2));
-    // ROS_INFO("x = %.6f\ny = %.6f\nz = %.6f\n", rBNn(0),rBNn(1),rBNn(2));
-    // // ROS_INFO("Lat = %.6f\nLong = %.6f\nAlt = %.6f\n", rBNn(0),rBNn(1),rBNn(2));
-}
-
 int main(int argc, char **argv){
     ros::init(argc, argv, "navigation");
 
@@ -71,7 +60,6 @@ int main(int argc, char **argv){
 
     ros::NodeHandle handler;
     ros::Subscriber gpsSub = handler.subscribe<sensor_msgs::NavSatFix>("/wamv/sensors/gps/gps/fix", 1, gpsCallBack);
-    ros::Subscriber nedSub = handler.subscribe<gazebo_msgs::ModelStates>("/gazebo/model_states", 1, nedCallBack);
     ros::Subscriber imuSub = handler.subscribe<sensor_msgs::Imu>("/wamv/sensors/imu/imu/data", 1, imuCallBack);
 
     ros::Subscriber lThrustSub = handler.subscribe<std_msgs::Float32>("/wamv/thrusters/left_thrust_cmd", 1, lThrustCallback);
@@ -92,19 +80,26 @@ int main(int argc, char **argv){
         // std::cout << xp << std::endl;
         gpsLogLiklihood(gpsMeas, xp, M, gpslw);
 
-        lw = gpslw.array()+imulw.array();
-        // std::cout << imulw << std::endl;
+        lw = gpslw.array();
+        // lw = imulw.array();
+        // lw = gpslw.array() + imulw.array();
+        
         // std::cout << gpslw << std::endl;
+        // std::cout << imulw << std::endl;
 
         // Normailise log weights
         lseW = lw;
-        logSumExponential(lseW);
+        // logSumExponential(lseW);
+        // std::cout << lw << std::endl;
         // std::cout << lseW << std::endl;
-        lw = lw.array() - lseW.array();
+        lw = lw.array() - logSumExponential(lseW);
+        // std::cout << lw << std::endl;
 
         Eigen::MatrixXd::Index maxIdx;
         lw.maxCoeff(&maxIdx);
-        
+        // std::cout << lw << "\n" << std::endl;
+
+        // std::cout << lw.maxCoeff() << std::endl;
         // Resample particles based on weights
         weightedResample(lw,M,idxWeighted);
         xt = xp(Eigen::all,idxWeighted.array());

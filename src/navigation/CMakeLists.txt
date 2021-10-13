@@ -170,6 +170,7 @@ file(GLOB SRC_BIN CONFIGURE_DEPENDS ${DIR_SRC}/*.cpp ${DIR_SRC}/*.h ${DIR_SRC}/*
 #static Library
 set(SRC_LIB ${SRC_BIN})
 list(FILTER SRC_LIB EXCLUDE REGEX ".*spacialDualLocalisation.cpp$")
+list(FILTER SRC_LIB EXCLUDE REGEX ".*writer.cpp$")
 
 if(SRC_LIB)
     add_library(${TARGET_LIB} ${SRC_LIB})
@@ -183,6 +184,14 @@ if(SRC_LIB)
 endif()
 target_link_libraries(spacialDualLocalisation ${LIBS})
 add_dependencies(spacialDualLocalisation navigation_generate_messages_cpp)
+
+add_executable(writer src/writer.cpp)
+target_link_libraries(writer ${catkin_LIBRARIES})
+if(SRC_LIB)
+  target_link_libraries(writer ${TARGET_LIB})
+endif()
+target_link_libraries(writer ${LIBS})
+add_dependencies(writer navigation_generate_messages_cpp)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

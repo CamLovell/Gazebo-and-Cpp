@@ -70,6 +70,7 @@
         "memory_resource": "cpp",
         "regex": "cpp",
         "shared_mutex": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "codecvt": "cpp"
     }
 }
