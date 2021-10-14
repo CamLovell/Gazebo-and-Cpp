@@ -15,7 +15,7 @@ void trueCallback(const gazebo_msgs::ModelStates::ConstPtr& nedMsg){
     Eigen::MatrixXd q(4,1), RPY;
     q << nedMsg->pose[11].orientation.w,nedMsg->pose[11].orientation.x,nedMsg->pose[11].orientation.y,nedMsg->pose[11].orientation.z;
     quaterniontoRPY(q, RPY);
-    trueState << nedMsg->pose[11].position.y, nedMsg->pose[11].position.x,RPY(2),nedMsg->twist[11].linear.x, nedMsg->twist[11].linear.y, nedMsg->twist[11].angular.z;
+    trueState << nedMsg->pose[11].position.x, nedMsg->pose[11].position.y,RPY(2),nedMsg->twist[11].linear.x, nedMsg->twist[11].linear.y, nedMsg->twist[11].angular.z;
 }
 
 int main(int argc, char **argv){
@@ -28,8 +28,8 @@ int main(int argc, char **argv){
     ros::Subscriber estimatedSub = handler.subscribe<navigation::state>("/NUMarine/state/likely", 1, likelyCallback);
     
     // Set up files to write to
-    std::ofstream trueData("NUMarine_ws/src/navigation/data/trueState.csv");
-    std::ofstream estimated("NUMarine_ws/src/navigation/data/estimatedState.csv");
+    std::ofstream trueData("src/navigation/data/trueState.csv");
+    std::ofstream estimated("src/navigation/data/estimatedState.csv");
 
     // Write collumn headings
     trueData << "N,E,psi,u,v,r\n";
@@ -53,10 +53,10 @@ int main(int argc, char **argv){
         }
         std::cout << "Writing" << std::string(count/2+1, '.') << "\r" ;
         std::cout.flush();
-        count++;
-        
+        count++;        
 
         rate.sleep();
+        // ros::shutdown();
     }
 
     // Close the csv files to save them propperly after node shutdown

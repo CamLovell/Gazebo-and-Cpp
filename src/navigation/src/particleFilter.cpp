@@ -18,9 +18,9 @@ void particleInit(const int& M, Eigen::VectorXd& logWeights, Eigen::MatrixXd& pa
     logWeights = (relW.array()/relW.array().sum()).log();
 
     // Create Normal distribution
-    double sigma = 2, sigmaPsi = 0.2; // Inital position uncertainty in m
+    double sigma = 2, sigmaPsi = 0.1/3*M_PI/180; // Inital position uncertainty in m
     std::default_random_engine generator;
-    std::normal_distribution<double> ndN(-162.178285,sigma),ndE(531.564687,sigma),ndpsi(-2.15,sigmaPsi); // Assumed starting position, in reality will be 0,0 and NED origin will be set to this lat and long
+    std::normal_distribution<double> ndE(-162.178285,sigma),ndN(531.564687,sigma),ndpsi(-2.15,sigmaPsi); // Assumed starting position, in reality will be 0,0 and NED origin will be set to this lat and long
     // std::normal_distribution<double> ndN(0,sigma),ndE(0,sigma),ndpsi(-2.15,sigmaPsi); // Assumed starting position, in reality will be 0,0 and NED origin will be set to this lat and long
     
     // Weird objects used in "NullaryExpr" to generate outputs

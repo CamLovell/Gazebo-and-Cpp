@@ -54,16 +54,20 @@ void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const i
     // Initialise outputs with zeros to avoid any issues with existing memory values
     lw.setZero(M);
     NED.setZero(3,M);
-    NED.row(0) = x.row(0);
-    NED.row(1) = x.row(1);
-
+    //What the actual fuck????
+    NED.row(0) = -x.row(1);
+    NED.row(1) = -x.row(0);
+    
     // Convert NED coordinates to lat and long as measured
     NEDtoGeo(NED,partCoords);
-
+    // std::cout << partCoords << std::endl;
+    // std::cout << y << std::endl;
     // Calculate log likelihood 
     partWeight = log(1/sqrt(2*M_PI*gpsSigma*gpsSigma))+(-0.5*(((partCoords.block(0,0,2,M).array().colwise()-y.segment(0,2).array())).square())/(gpsSigma*gpsSigma));
     // std::cout << 1000*(partCoords.block(0,0,2,M).array().colwise()-y.segment(0,2).array()) << "\n" << std::endl;
     // std::cout << partWeight << "\n" << std::endl;
+    // std::cout << partCoords.block(0,0,2,M);
+    // std::cout << y.segment(0,2) << "\n" << std::endl;
 
     // Hacky loop for poor LSE implementation, need to look at matrix input LSE
     for(int i = 0; i<M; i++){
@@ -71,7 +75,7 @@ void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const i
         temp = partWeight.col(i);
         // std::cout << temp << std::endl;
         // lw(i) = logSumExponential(temp);
-        lw(i) = temp(0)+10*temp(1);
+        lw(i) = temp(0)+temp(1);
 
     }
         // std::cout << lw << "\n" << std::endl;
@@ -115,6 +119,9 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     // Convert to ECEF coordinates
     // std::cout << (Rne*rBNn + rNOe << "\n" << std::endl;
     // std::cout << rNOe << "\n" << std::endl;
+    Eigen::MatrixXd temp;
+    temp.resizeLike(rBNn);
+    temp << rBNn.row(1),rBNn.row(0),rBNn.row(2);
     rBOe = (Rne*rBNn).colwise() + rNOe;
     // rBOe = Rne*rBNn + rNOe;
 
@@ -151,7 +158,7 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     // <elevation>0.0</elevation>
 
     // GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
-    // GeographicLib::Geocentric earth(a, f);
+    // // GeographicLib::Geocentric earth(a, f);
     // GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
     // double lat, lon, h;
     // sydneyRegatta.Reverse(rBNn(0),rBNn(1),rBNn(2),lat,lon,h);
@@ -179,14 +186,14 @@ void geotoNED(const Eigen::MatrixXd& rBOg, Eigen::MatrixXd& rBNn){
     // Convert to ECEF coordinates
     rBNn = Rne.transpose()*(rBOe - rNOe);
 
-    GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
-    // GeographicLib::Geocentric earth(a, f);
-    GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
-    double x, y, z;
-    sydneyRegatta.Forward(rBOg(0),rBOg(1),rBOg(2),x, y, z);
-    std::cout << x << " " << y << " " << z << std::endl;
-    // std::cout << rBNn << std::endl;
-    rBNn << y, x, z;
+    // GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
+    // // GeographicLib::Geocentric earth(a, f);
+    // GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
+    // double x, y, z;
+    // sydneyRegatta.Forward(rBOg(0),rBOg(1),rBOg(2),x, y, z);
+    // std::cout << x << " " << y << " " << z << std::endl;
+    // // std::cout << rBNn << std::endl;
+    // rBNn << y, x, z;
     
 
 }

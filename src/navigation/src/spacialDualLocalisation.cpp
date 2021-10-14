@@ -50,7 +50,7 @@ int main(int argc, char **argv){
     Eigen::MatrixXd xp, xt, uMat;
     Eigen::Matrix<int,Eigen::Dynamic,1> idxWeighted;
     boatParams param;
-    int M = 200;
+    int M = 2000;
     double dt = 0.25;
     u.setZero();
     // Initialise nessecary components
@@ -70,7 +70,7 @@ int main(int argc, char **argv){
     ros::Publisher statePub = handler.advertise<navigation::state>("/NUMarine/state/likely", 100);   
     
     ros::Rate rate(1/dt);
-
+    int count = 0;
     while(ros::ok()){
         ros::spinOnce();
         navigation::state mostLikely;       
@@ -80,9 +80,9 @@ int main(int argc, char **argv){
         // std::cout << xp << std::endl;
         gpsLogLiklihood(gpsMeas, xp, M, gpslw);
 
-        lw = gpslw.array();
+        // lw = gpslw.array();
         // lw = imulw.array();
-        // lw = gpslw.array() + imulw.array();
+        lw = gpslw.array() + imulw.array();
         
         // std::cout << gpslw << std::endl;
         // std::cout << imulw << std::endl;
@@ -117,7 +117,22 @@ int main(int argc, char **argv){
         mostLikely.r = xp(5,maxIdx);
 
         statePub.publish(mostLikely);
-        rate.sleep();
+        bool realTime = rate.sleep();
+
+        // Visual output to show running with indication of realtime or not
+        if(count==8){
+        std::cout << "\33[2K" << "\r"; //Reset dots
+        count=0;
+        }
+        if(realTime){
+            std::cout << "\33[2K" << "Running in realtime";
+        }
+        else{
+            std::cout << "\33[2K" << "Running slower than realtime";
+        }
+        std::cout << std::string(count/2+1, '.') << "\r" ;
+        std::cout.flush();
+        count++;
     }
     return 0;
 }

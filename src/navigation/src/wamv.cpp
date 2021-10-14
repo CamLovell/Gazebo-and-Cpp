@@ -17,7 +17,7 @@ void intiBoat(boatParams& params){
     params.sigmaU.resize(4);
     params.sigmaU << 200,0.5,200,0.5;
     params.sigmaX.resize(6);
-    params.sigmaX << 0.5,0.5,0.1*M_PI/180,0.001,0.001,0.001;
+    params.sigmaX << 0.5,0.5,1,0.001,0.001,0.001;
     // params.sigmaX << 5,5,1*M_PI/180,0.1,0.1,0.1;
     // params.sigmaX.setZero();
 
