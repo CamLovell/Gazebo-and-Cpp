@@ -6,6 +6,7 @@ file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/cameron/NUMarine_ws/src/navigati
 set(OLD_GLOB
   "/home/cameron/NUMarine_ws/src/navigation/src/Eig.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/src/helpers.cpp"
+  "/home/cameron/NUMarine_ws/src/navigation/src/lidar.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/src/particleFilter.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/src/spacialDual.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/src/spacialDualLocalisation.cpp"
@@ -22,6 +23,7 @@ endif()
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/cameron/NUMarine_ws/src/navigation/src/*.h")
 set(OLD_GLOB
   "/home/cameron/NUMarine_ws/src/navigation/src/helpers.h"
+  "/home/cameron/NUMarine_ws/src/navigation/src/lidar.h"
   "/home/cameron/NUMarine_ws/src/navigation/src/particleFilter.h"
   "/home/cameron/NUMarine_ws/src/navigation/src/sensorData.h"
   "/home/cameron/NUMarine_ws/src/navigation/src/spacialDual.h"

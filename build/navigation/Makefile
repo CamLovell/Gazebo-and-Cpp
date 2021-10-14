@@ -1662,6 +1662,33 @@ src/helpers.cpp.s:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/helpers.cpp.s
 .PHONY : src/helpers.cpp.s
 
+src/lidar.o: src/lidar.cpp.o
+
+.PHONY : src/lidar.o
+
+# target to build an object file
+src/lidar.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/lidar.cpp.o
+.PHONY : src/lidar.cpp.o
+
+src/lidar.i: src/lidar.cpp.i
+
+.PHONY : src/lidar.i
+
+# target to preprocess a source file
+src/lidar.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/lidar.cpp.i
+.PHONY : src/lidar.cpp.i
+
+src/lidar.s: src/lidar.cpp.s
+
+.PHONY : src/lidar.s
+
+# target to generate assembly for a file
+src/lidar.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/lidar.cpp.s
+.PHONY : src/lidar.cpp.s
+
 src/particleFilter.o: src/particleFilter.cpp.o
 
 .PHONY : src/particleFilter.o
@@ -2101,6 +2128,9 @@ help:
 	@echo "... src/helpers.o"
 	@echo "... src/helpers.i"
 	@echo "... src/helpers.s"
+	@echo "... src/lidar.o"
+	@echo "... src/lidar.i"
+	@echo "... src/lidar.s"
 	@echo "... src/particleFilter.o"
 	@echo "... src/particleFilter.i"
 	@echo "... src/particleFilter.s"

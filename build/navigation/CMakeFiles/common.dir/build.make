@@ -83,9 +83,22 @@ navigation/CMakeFiles/common.dir/src/helpers.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common.dir/src/helpers.cpp.s"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cameron/NUMarine_ws/src/navigation/src/helpers.cpp -o CMakeFiles/common.dir/src/helpers.cpp.s
 
+navigation/CMakeFiles/common.dir/src/lidar.cpp.o: navigation/CMakeFiles/common.dir/flags.make
+navigation/CMakeFiles/common.dir/src/lidar.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/lidar.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object navigation/CMakeFiles/common.dir/src/lidar.cpp.o"
+	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common.dir/src/lidar.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/src/lidar.cpp
+
+navigation/CMakeFiles/common.dir/src/lidar.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common.dir/src/lidar.cpp.i"
+	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cameron/NUMarine_ws/src/navigation/src/lidar.cpp > CMakeFiles/common.dir/src/lidar.cpp.i
+
+navigation/CMakeFiles/common.dir/src/lidar.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common.dir/src/lidar.cpp.s"
+	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cameron/NUMarine_ws/src/navigation/src/lidar.cpp -o CMakeFiles/common.dir/src/lidar.cpp.s
+
 navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o: navigation/CMakeFiles/common.dir/flags.make
 navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/particleFilter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common.dir/src/particleFilter.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/src/particleFilter.cpp
 
 navigation/CMakeFiles/common.dir/src/particleFilter.cpp.i: cmake_force
@@ -98,7 +111,7 @@ navigation/CMakeFiles/common.dir/src/particleFilter.cpp.s: cmake_force
 
 navigation/CMakeFiles/common.dir/src/spacialDual.cpp.o: navigation/CMakeFiles/common.dir/flags.make
 navigation/CMakeFiles/common.dir/src/spacialDual.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/spacialDual.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object navigation/CMakeFiles/common.dir/src/spacialDual.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object navigation/CMakeFiles/common.dir/src/spacialDual.cpp.o"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common.dir/src/spacialDual.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/src/spacialDual.cpp
 
 navigation/CMakeFiles/common.dir/src/spacialDual.cpp.i: cmake_force
@@ -111,7 +124,7 @@ navigation/CMakeFiles/common.dir/src/spacialDual.cpp.s: cmake_force
 
 navigation/CMakeFiles/common.dir/src/testing.cpp.o: navigation/CMakeFiles/common.dir/flags.make
 navigation/CMakeFiles/common.dir/src/testing.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/testing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object navigation/CMakeFiles/common.dir/src/testing.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object navigation/CMakeFiles/common.dir/src/testing.cpp.o"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common.dir/src/testing.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/src/testing.cpp
 
 navigation/CMakeFiles/common.dir/src/testing.cpp.i: cmake_force
@@ -124,7 +137,7 @@ navigation/CMakeFiles/common.dir/src/testing.cpp.s: cmake_force
 
 navigation/CMakeFiles/common.dir/src/wamv.cpp.o: navigation/CMakeFiles/common.dir/flags.make
 navigation/CMakeFiles/common.dir/src/wamv.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/wamv.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object navigation/CMakeFiles/common.dir/src/wamv.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object navigation/CMakeFiles/common.dir/src/wamv.cpp.o"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/common.dir/src/wamv.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/src/wamv.cpp
 
 navigation/CMakeFiles/common.dir/src/wamv.cpp.i: cmake_force
@@ -139,6 +152,7 @@ navigation/CMakeFiles/common.dir/src/wamv.cpp.s: cmake_force
 common_OBJECTS = \
 "CMakeFiles/common.dir/src/Eig.cpp.o" \
 "CMakeFiles/common.dir/src/helpers.cpp.o" \
+"CMakeFiles/common.dir/src/lidar.cpp.o" \
 "CMakeFiles/common.dir/src/particleFilter.cpp.o" \
 "CMakeFiles/common.dir/src/spacialDual.cpp.o" \
 "CMakeFiles/common.dir/src/testing.cpp.o" \
@@ -149,13 +163,14 @@ common_EXTERNAL_OBJECTS =
 
 /home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/src/Eig.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/src/helpers.cpp.o
+/home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/src/lidar.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/src/spacialDual.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/src/testing.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/src/wamv.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/build.make
 /home/cameron/NUMarine_ws/devel/lib/libcommon.so: navigation/CMakeFiles/common.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library /home/cameron/NUMarine_ws/devel/lib/libcommon.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX shared library /home/cameron/NUMarine_ws/devel/lib/libcommon.so"
 	cd /home/cameron/NUMarine_ws/build/navigation && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/common.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

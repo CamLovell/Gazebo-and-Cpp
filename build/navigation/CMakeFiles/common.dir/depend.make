@@ -181,6 +181,9 @@ navigation/CMakeFiles/common.dir/src/helpers.cpp.o: /usr/include/eigen3/Eigen/sr
 navigation/CMakeFiles/common.dir/src/helpers.cpp.o: /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h
 navigation/CMakeFiles/common.dir/src/helpers.cpp.o: /usr/include/eigen3/Eigen/src/plugins/ReshapedMethods.h
 
+navigation/CMakeFiles/common.dir/src/lidar.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/lidar.cpp
+navigation/CMakeFiles/common.dir/src/lidar.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/lidar.h
+
 navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/particleFilter.cpp
 navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/particleFilter.h
 navigation/CMakeFiles/common.dir/src/particleFilter.cpp.o: /usr/include/eigen3/Eigen/Core

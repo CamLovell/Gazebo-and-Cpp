@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "/home/cameron/NUMarine_ws/devel/lib/libcommon.so"
   "CMakeFiles/common.dir/src/Eig.cpp.o"
   "CMakeFiles/common.dir/src/helpers.cpp.o"
+  "CMakeFiles/common.dir/src/lidar.cpp.o"
   "CMakeFiles/common.dir/src/particleFilter.cpp.o"
   "CMakeFiles/common.dir/src/spacialDual.cpp.o"
   "CMakeFiles/common.dir/src/testing.cpp.o"
