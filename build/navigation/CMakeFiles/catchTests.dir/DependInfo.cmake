@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/cameron/NUMarine_ws/src/navigation/test/src/GPS.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/GPS.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/eigenAtan2.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/eigenAtan2.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/helpingFunctions.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o"
+  "/home/cameron/NUMarine_ws/src/navigation/test/src/lidar.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/main.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/main.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/quaternionConversions.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/wamv.cpp" "/home/cameron/NUMarine_ws/build/navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.o"

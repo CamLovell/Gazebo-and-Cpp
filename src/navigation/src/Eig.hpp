@@ -7,6 +7,7 @@
 namespace Eig {
     void atan2(const Eigen::VectorXd& numerator,const Eigen::VectorXd& denominator,Eigen::VectorXd& result);
 }
+Eigen::MatrixXd readCSV(std::string file, int rows, int cols);
 
 // static Eig_funcs Eig;
 

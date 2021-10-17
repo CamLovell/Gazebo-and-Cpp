@@ -23,7 +23,6 @@ endif()
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/cameron/NUMarine_ws/src/navigation/src/*.h")
 set(OLD_GLOB
   "/home/cameron/NUMarine_ws/src/navigation/src/helpers.h"
-  "/home/cameron/NUMarine_ws/src/navigation/src/lidar.h"
   "/home/cameron/NUMarine_ws/src/navigation/src/particleFilter.h"
   "/home/cameron/NUMarine_ws/src/navigation/src/sensorData.h"
   "/home/cameron/NUMarine_ws/src/navigation/src/spacialDual.h"
@@ -39,6 +38,7 @@ endif()
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/cameron/NUMarine_ws/src/navigation/src/*.hpp")
 set(OLD_GLOB
   "/home/cameron/NUMarine_ws/src/navigation/src/Eig.hpp"
+  "/home/cameron/NUMarine_ws/src/navigation/src/lidar.hpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -51,6 +51,7 @@ set(OLD_GLOB
   "/home/cameron/NUMarine_ws/src/navigation/test/src/GPS.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/eigenAtan2.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/helpingFunctions.cpp"
+  "/home/cameron/NUMarine_ws/src/navigation/test/src/lidar.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/main.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/quaternionConversions.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/wamv.cpp"

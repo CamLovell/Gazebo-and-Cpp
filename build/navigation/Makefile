@@ -1932,6 +1932,33 @@ test/src/helpingFunctions.cpp.s:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.s
 .PHONY : test/src/helpingFunctions.cpp.s
 
+test/src/lidar.o: test/src/lidar.cpp.o
+
+.PHONY : test/src/lidar.o
+
+# target to build an object file
+test/src/lidar.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o
+.PHONY : test/src/lidar.cpp.o
+
+test/src/lidar.i: test/src/lidar.cpp.i
+
+.PHONY : test/src/lidar.i
+
+# target to preprocess a source file
+test/src/lidar.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.i
+.PHONY : test/src/lidar.cpp.i
+
+test/src/lidar.s: test/src/lidar.cpp.s
+
+.PHONY : test/src/lidar.s
+
+# target to generate assembly for a file
+test/src/lidar.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.s
+.PHONY : test/src/lidar.cpp.s
+
 test/src/main.o: test/src/main.cpp.o
 
 .PHONY : test/src/main.o
@@ -2158,6 +2185,9 @@ help:
 	@echo "... test/src/helpingFunctions.o"
 	@echo "... test/src/helpingFunctions.i"
 	@echo "... test/src/helpingFunctions.s"
+	@echo "... test/src/lidar.o"
+	@echo "... test/src/lidar.i"
+	@echo "... test/src/lidar.s"
 	@echo "... test/src/main.o"
 	@echo "... test/src/main.i"
 	@echo "... test/src/main.s"

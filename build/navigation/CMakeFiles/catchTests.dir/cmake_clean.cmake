@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/catchTests.dir/test/src/GPS.cpp.o"
   "CMakeFiles/catchTests.dir/test/src/eigenAtan2.cpp.o"
   "CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o"
+  "CMakeFiles/catchTests.dir/test/src/lidar.cpp.o"
   "CMakeFiles/catchTests.dir/test/src/main.cpp.o"
   "CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o"
   "CMakeFiles/catchTests.dir/test/src/wamv.cpp.o"
