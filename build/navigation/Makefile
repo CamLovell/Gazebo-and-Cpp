@@ -1689,6 +1689,33 @@ src/lidar.cpp.s:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/lidar.cpp.s
 .PHONY : src/lidar.cpp.s
 
+src/map.o: src/map.cpp.o
+
+.PHONY : src/map.o
+
+# target to build an object file
+src/map.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/map.cpp.o
+.PHONY : src/map.cpp.o
+
+src/map.i: src/map.cpp.i
+
+.PHONY : src/map.i
+
+# target to preprocess a source file
+src/map.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/map.cpp.i
+.PHONY : src/map.cpp.i
+
+src/map.s: src/map.cpp.s
+
+.PHONY : src/map.s
+
+# target to generate assembly for a file
+src/map.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/src/map.cpp.s
+.PHONY : src/map.cpp.s
+
 src/particleFilter.o: src/particleFilter.cpp.o
 
 .PHONY : src/particleFilter.o
@@ -2158,6 +2185,9 @@ help:
 	@echo "... src/lidar.o"
 	@echo "... src/lidar.i"
 	@echo "... src/lidar.s"
+	@echo "... src/map.o"
+	@echo "... src/map.i"
+	@echo "... src/map.s"
 	@echo "... src/particleFilter.o"
 	@echo "... src/particleFilter.i"
 	@echo "... src/particleFilter.s"

@@ -6,7 +6,8 @@
 #include <iostream>
 #include <catch2/catch.hpp>
 
-#include "lidar.hpp"
+#include "lidar.h"
+#include "map.h"
 #include "Eig.hpp"
 
 SCENARIO("Lidar Scan on known map") {
@@ -14,22 +15,22 @@ SCENARIO("Lidar Scan on known map") {
         Map map;
 
         // Intialise map paramaters
-        map.x.resize(400);
-        map.y.resize(400);        
-        map.dx = 0.5;
-        map.dy = map.dx;
-        map.x0 = 0;
-        map.y0 = map.x0;
-        map.x.setLinSpaced(400,map.x0,(400-1)*map.dx);
-        map.y.setLinSpaced(400,map.y0,(400-1)*map.dy);
-        // std::cout << map.x << std::endl;
+        map.E.resize(400);
+        map.N.resize(400);        
+        map.dE = 0.5;
+        map.dN = map.dE;
+        map.E0 = 0;
+        map.N0 = map.E0;
+        map.E.setLinSpaced(400,map.E0,(400-1)*map.dE);
+        map.N.setLinSpaced(400,map.N0,(400-1)*map.dN);
+        // std::cout << map.E << std::endl;
         map.numX = 400;
         map.numY = map.numX;
 
         std::string path = "navigation/data/testMap.csv";
         map.z = readCSV(path,400,400); 
 
-        Scanner M8;
+        Lidar M8;
         M8.x0 = 0.0;
         M8.y0 = 0.0;
         M8.psi0 = 0.0;
@@ -38,10 +39,8 @@ SCENARIO("Lidar Scan on known map") {
         M8.maxRange = 150.0;
         M8.numScans = 360;
 
-        Pose pose;
-        pose.x = 100;
-        pose.y = 100;
-        pose.psi = 90;
+        Eigen::VectorXd pose(3);
+        pose << 100, 100, 90;
 
         Eigen::VectorXd range, xr, yr,C;
 

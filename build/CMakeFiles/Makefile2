@@ -447,7 +447,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmoc
 gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=19,20 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=20,21 "Built target gmock_main"
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -474,7 +474,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
 gtest/googlemock/CMakeFiles/gmock.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=17,18 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=18,19 "Built target gmock"
 .PHONY : gtest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -501,7 +501,7 @@ gtest/googlemock/CMakeFiles/gmock.dir/clean:
 gtest/googletest/CMakeFiles/gtest_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=25,26 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=26,27 "Built target gtest_main"
 .PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -528,7 +528,7 @@ gtest/googletest/CMakeFiles/gtest_main.dir/clean:
 gtest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=23,24 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=24,25 "Built target gtest"
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -560,7 +560,7 @@ navigation/CMakeFiles/catchTests.dir/all: navigation/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 navigation/CMakeFiles/catchTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 17
 	$(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/catchTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 0
 .PHONY : navigation/CMakeFiles/catchTests.dir/rule
@@ -583,12 +583,12 @@ navigation/CMakeFiles/spacialDualLocalisation.dir/all: navigation/CMakeFiles/nav
 navigation/CMakeFiles/spacialDualLocalisation.dir/all: navigation/CMakeFiles/common.dir/all
 	$(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/spacialDualLocalisation.dir/build.make navigation/CMakeFiles/spacialDualLocalisation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=35,36 "Built target spacialDualLocalisation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=36,37 "Built target spacialDualLocalisation"
 .PHONY : navigation/CMakeFiles/spacialDualLocalisation.dir/all
 
 # Build rule for subdir invocation for target.
 navigation/CMakeFiles/spacialDualLocalisation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 12
 	$(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/spacialDualLocalisation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 0
 .PHONY : navigation/CMakeFiles/spacialDualLocalisation.dir/rule
@@ -638,7 +638,7 @@ navigation/CMakeFiles/navigation_generate_messages_nodejs.dir/all: navigation/CM
 navigation/CMakeFiles/navigation_generate_messages_nodejs.dir/all: navigation/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_nodejs.dir/build.make navigation/CMakeFiles/navigation_generate_messages_nodejs.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_nodejs.dir/build.make navigation/CMakeFiles/navigation_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=31 "Built target navigation_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=32 "Built target navigation_generate_messages_nodejs"
 .PHONY : navigation/CMakeFiles/navigation_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -693,7 +693,7 @@ navigation/CMakeFiles/navigation_generate_messages_eus.dir/all: navigation/CMake
 navigation/CMakeFiles/navigation_generate_messages_eus.dir/all: navigation/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_eus.dir/build.make navigation/CMakeFiles/navigation_generate_messages_eus.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_eus.dir/build.make navigation/CMakeFiles/navigation_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=28,29 "Built target navigation_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=29,30 "Built target navigation_generate_messages_eus"
 .PHONY : navigation/CMakeFiles/navigation_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
@@ -721,7 +721,7 @@ navigation/CMakeFiles/navigation_generate_messages_cpp.dir/all: navigation/CMake
 navigation/CMakeFiles/navigation_generate_messages_cpp.dir/all: navigation/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_cpp.dir/build.make navigation/CMakeFiles/navigation_generate_messages_cpp.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_cpp.dir/build.make navigation/CMakeFiles/navigation_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=27 "Built target navigation_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=28 "Built target navigation_generate_messages_cpp"
 .PHONY : navigation/CMakeFiles/navigation_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1045,12 +1045,12 @@ navigation/CMakeFiles/tf_generate_messages_nodejs.dir/clean:
 navigation/CMakeFiles/common.dir/all:
 	$(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/common.dir/build.make navigation/CMakeFiles/common.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16 "Built target common"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16,17 "Built target common"
 .PHONY : navigation/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 navigation/CMakeFiles/common.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/common.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 0
 .PHONY : navigation/CMakeFiles/common.dir/rule
@@ -1181,7 +1181,7 @@ navigation/CMakeFiles/navigation_generate_messages_py.dir/all: navigation/CMakeF
 navigation/CMakeFiles/navigation_generate_messages_py.dir/all: navigation/CMakeFiles/std_msgs_generate_messages_py.dir/all
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_py.dir/build.make navigation/CMakeFiles/navigation_generate_messages_py.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_py.dir/build.make navigation/CMakeFiles/navigation_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=32,33 "Built target navigation_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=33,34 "Built target navigation_generate_messages_py"
 .PHONY : navigation/CMakeFiles/navigation_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1614,12 +1614,12 @@ navigation/CMakeFiles/run_testing.dir/all: navigation/CMakeFiles/catchTests.dir/
 navigation/CMakeFiles/run_testing.dir/all: navigation/CMakeFiles/spacialDualLocalisation.dir/all
 	$(MAKE) -f navigation/CMakeFiles/run_testing.dir/build.make navigation/CMakeFiles/run_testing.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/run_testing.dir/build.make navigation/CMakeFiles/run_testing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=34 "Built target run_testing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=35 "Built target run_testing"
 .PHONY : navigation/CMakeFiles/run_testing.dir/all
 
 # Build rule for subdir invocation for target.
 navigation/CMakeFiles/run_testing.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/run_testing.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 0
 .PHONY : navigation/CMakeFiles/run_testing.dir/rule
@@ -1889,7 +1889,7 @@ navigation/CMakeFiles/navigation_generate_messages_lisp.dir/all: navigation/CMak
 navigation/CMakeFiles/navigation_generate_messages_lisp.dir/all: navigation/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_lisp.dir/build.make navigation/CMakeFiles/navigation_generate_messages_lisp.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/navigation_generate_messages_lisp.dir/build.make navigation/CMakeFiles/navigation_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=30 "Built target navigation_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=31 "Built target navigation_generate_messages_lisp"
 .PHONY : navigation/CMakeFiles/navigation_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2025,12 +2025,12 @@ navigation/CMakeFiles/writer.dir/all: navigation/CMakeFiles/navigation_generate_
 navigation/CMakeFiles/writer.dir/all: navigation/CMakeFiles/common.dir/all
 	$(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/depend
 	$(MAKE) -f navigation/CMakeFiles/writer.dir/build.make navigation/CMakeFiles/writer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=38,39 "Built target writer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=39,40 "Built target writer"
 .PHONY : navigation/CMakeFiles/writer.dir/all
 
 # Build rule for subdir invocation for target.
 navigation/CMakeFiles/writer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 12
 	$(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/writer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cameron/NUMarine_ws/build/CMakeFiles 0
 .PHONY : navigation/CMakeFiles/writer.dir/rule
@@ -3213,7 +3213,7 @@ vrx_basics/CMakeFiles/vrx_basics_genpy.dir/clean:
 vrx_basics/CMakeFiles/vrx_basics_generate_messages_eus.dir/all: navigation/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 	$(MAKE) -f vrx_basics/CMakeFiles/vrx_basics_generate_messages_eus.dir/build.make vrx_basics/CMakeFiles/vrx_basics_generate_messages_eus.dir/depend
 	$(MAKE) -f vrx_basics/CMakeFiles/vrx_basics_generate_messages_eus.dir/build.make vrx_basics/CMakeFiles/vrx_basics_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=37 "Built target vrx_basics_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=38 "Built target vrx_basics_generate_messages_eus"
 .PHONY : vrx_basics/CMakeFiles/vrx_basics_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3460,7 +3460,7 @@ vrx_basics/CMakeFiles/vrx_basics_generate_messages.dir/clean:
 vrx_basics/CMakeFiles/gpsTest.dir/all: vrx_basics/CMakeFiles/vrx_basics_generate_messages_cpp.dir/all
 	$(MAKE) -f vrx_basics/CMakeFiles/gpsTest.dir/build.make vrx_basics/CMakeFiles/gpsTest.dir/depend
 	$(MAKE) -f vrx_basics/CMakeFiles/gpsTest.dir/build.make vrx_basics/CMakeFiles/gpsTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=21,22 "Built target gpsTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=22,23 "Built target gpsTest"
 .PHONY : vrx_basics/CMakeFiles/gpsTest.dir/all
 
 # Build rule for subdir invocation for target.

@@ -54,31 +54,26 @@ void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const i
     // Initialise outputs with zeros to avoid any issues with existing memory values
     lw.setZero(M);
     NED.setZero(3,M);
+    
     //What the actual fuck????
     NED.row(0) = -x.row(1);
     NED.row(1) = -x.row(0);
     
     // Convert NED coordinates to lat and long as measured
     NEDtoGeo(NED,partCoords);
-    // std::cout << partCoords << std::endl;
-    // std::cout << y << std::endl;
+
     // Calculate log likelihood 
-    partWeight = log(1/sqrt(2*M_PI*gpsSigma*gpsSigma))+(-0.5*(((partCoords.block(0,0,2,M).array().colwise()-y.segment(0,2).array())).square())/(gpsSigma*gpsSigma));
-    // std::cout << 1000*(partCoords.block(0,0,2,M).array().colwise()-y.segment(0,2).array()) << "\n" << std::endl;
-    // std::cout << partWeight << "\n" << std::endl;
-    // std::cout << partCoords.block(0,0,2,M);
-    // std::cout << y.segment(0,2) << "\n" << std::endl;
+    partWeight = log(1/sqrt(2*M_PI*gpsSigma*gpsSigma))+(-0.5*((partCoords.block(0,0,2,M).array().colwise()-y.segment(0,2).array()).square())/(gpsSigma*gpsSigma));
+
 
     // Hacky loop for poor LSE implementation, need to look at matrix input LSE
     for(int i = 0; i<M; i++){
         Eigen::VectorXd temp;
         temp = partWeight.col(i);
-        // std::cout << temp << std::endl;
-        // lw(i) = logSumExponential(temp);
+
         lw(i) = temp(0)+temp(1);
 
     }
-        // std::cout << lw << "\n" << std::endl;
 }
 // IMU log likelihood calculation expecting quaternion input [w x y z]^T
 void imuLogLiklihood(const Eigen::MatrixXd& y, const Eigen::MatrixXd& x, const int& M, Eigen::VectorXd& lw){
@@ -93,14 +88,8 @@ void imuLogLiklihood(const Eigen::MatrixXd& y, const Eigen::MatrixXd& x, const i
     assert(RPY.rows() == 3);
     assert(RPY.cols() == 1);
 
-    // P = (1./sqrt(2.*pi.*params.sigmaHead.^2)).*exp(-0.5.*((y-psi_part(k)).^2)./params.sigmaHead.^2);
-
     // Calculate log likelihood 
-    // lw = (1/sqrt(2*M_PI*imuSigma*imuSigma)*(-0.5*((x.row(2).array()-RPY(2)).square())/(imuSigma*imuSigma)).exp());
-    // lw = lw.array().log();
-    // std::cout << x.row(2).array()-RPY(2) << std::endl;
     lw = log(1/sqrt(2*M_PI*imuSigma*imuSigma))+(-0.5*((x.row(2).array()-RPY(2)).square())/(imuSigma*imuSigma));
-    // std::cout << lw << std::endl;
 
 }
 
@@ -117,13 +106,10 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     Eigen::MatrixXd rBOe(rBNn.cols(),3);  
     
     // Convert to ECEF coordinates
-    // std::cout << (Rne*rBNn + rNOe << "\n" << std::endl;
-    // std::cout << rNOe << "\n" << std::endl;
     Eigen::MatrixXd temp;
     temp.resizeLike(rBNn);
     temp << rBNn.row(1),rBNn.row(0),rBNn.row(2);
     rBOe = (Rne*rBNn).colwise() + rNOe;
-    // rBOe = Rne*rBNn + rNOe;
 
     // Calculate ECEF paramaters
     p = (rBOe.row(0).transpose().array().square()+rBOe.row(1).transpose().array().square()).sqrt().matrix();
@@ -147,8 +133,8 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
 
     // temp2 = ((-rBOe.row(2).transpose().array()+rNOe.row(2).transpose().array())/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
     // temp2 = (rBOe.row(2).array()/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
+    
     // Alt is dodgy as fuck!!!
-
     rBOg << temp0.transpose()*180/M_PI, 2*temp1.transpose()*180/M_PI,(rBOe.colwise().norm().array()-rNOe.norm()+4.60823*rBNn(2));
     // std::cout << rBOg << std::endl;
 
@@ -263,6 +249,4 @@ void  rotateLatLong(const Eigen::VectorXd& geoCoordDeg, Eigen::MatrixXd& R){
     // Compute final rotation matrix
     Rne.resize(geoCoordDeg.rows(),geoCoordDeg.rows());
     R << RZ*RY;
-    // std::cout << R << std::endl;
-
 }

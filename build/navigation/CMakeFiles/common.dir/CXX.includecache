@@ -6,19 +6,29 @@
 
 #IncludeRegexTransform: 
 
+/home/cameron/NUMarine_ws/src/navigation/src/helpers.h
+Eigen/Core
+-
+
 /home/cameron/NUMarine_ws/src/navigation/src/lidar.cpp
 cmath
 -
 vector
 -
+limits
+-
 iostream
 -
 Eigen/Core
 -
-lidar.hpp
-/home/cameron/NUMarine_ws/src/navigation/src/lidar.hpp
+lidar.h
+/home/cameron/NUMarine_ws/src/navigation/src/lidar.h
+map.h
+/home/cameron/NUMarine_ws/src/navigation/src/map.h
+helpers.h
+/home/cameron/NUMarine_ws/src/navigation/src/helpers.h
 
-/home/cameron/NUMarine_ws/src/navigation/src/lidar.hpp
+/home/cameron/NUMarine_ws/src/navigation/src/lidar.h
 Eigen/Core
 -
 Eigen/Dense
@@ -27,6 +37,10 @@ vector
 -
 fstream
 -
+map.h
+/home/cameron/NUMarine_ws/src/navigation/src/map.h
+
+/home/cameron/NUMarine_ws/src/navigation/src/map.h
 
 /usr/include/eigen3/Eigen/Cholesky
 Core

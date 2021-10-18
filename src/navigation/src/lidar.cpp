@@ -1,10 +1,117 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <vector>
+#include <limits>
 #include <iostream>
 #include <Eigen/Core>
 
-#include "lidar.hpp"
+#include "lidar.h"
+#include "map.h"
+#include "helpers.h"
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+// Initialise lidar parameters
+//----------------------------------------------------------------------------------------------------------------------------------------
+void lidatInit(Lidar& lidarParams){
+    double sigma = 0.05, // Sigma for lidar range measurments in m
+        wHit = 0.9, // Weight for a true/good hit (most will be good)
+        wShort = 0.09, // Weight for a short hit 
+        wRand = 0.01; // Weight for a random hit 
+
+    lidarParams.x0 = 0.0; // Relative x(forwards) offset of lidar from body
+    lidarParams.y0 = 0.0; // Relative y(sideways) offset of lidar from body
+    lidarParams.psi0 = 0.0; // Relative angle(vetical) offset of lidar from body
+    lidarParams.startDeg = 0.0; // Starting location of scan in degrees
+    lidarParams.resDeg = 360.0/10400.0; //10400 scans per revolution
+    lidarParams.maxRange = 150.0; // Maximum range of lidar in m
+    lidarParams.minRange = 1.0; // Minimum range of lidar in m
+    lidarParams.sigma2 = sigma*sigma; // Precomputed sigma^2
+    lidarParams.lambda = 0.5; // Lambda value for short hit exponential distribution
+    lidarParams.lwHit = log(wHit); // log hit weight
+    lidarParams.lwShort =  log(wShort); // log short weight
+    lidarParams.lwRand = log(wRand); // log random weight
+    lidarParams.numScans = 10400.0; // May need to look more closely
+}
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+// Lidar Log Likelihood funciton
+// Note:
+// - Loops suck for speed but logical checks with eigen are not particularly friendly
+// - May be worth looking into if speed is an issue
+//----------------------------------------------------------------------------------------------------------------------------------------
+void lidarLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const int& M, Lidar& lidarM8, Map& map, Eigen::VectorXd& lw){
+    double logHit, logShort, logRand;
+    Eigen::VectorXd rangeParticle, pose, xr, yr, C;
+    lw.setZero(M);
+
+    // Loop through each particle
+    for(int i = 0; i<M; i++){
+        pose = x.block(0,i,3,1);
+
+        // Check if current particle sits in occupied map cell
+        int Nidx = round(((pose(0)-map.N(1))/(map.N(map.N.size()-1)-map.N(0)))*(map.N.size()-1));
+        int Eidx = round(((pose(1)-map.E(1))/(map.E(map.E.size()-1)-map.E(0)))*(map.E.size()-1));
+        // Limit indicies to size of vectors
+        if(Nidx>(map.numY-1)){
+            Nidx=(map.numY-1);
+        }
+        if(Eidx>(map.numX-1)){
+            Eidx=(map.numX-1);
+        }
+        if(!map.z(Nidx,Eidx)){
+            // Get expected range measurments for current particle
+            findRange(map, lidarM8, pose, rangeParticle, xr, yr, C);
+            
+            // Loop through measurements and calculate likelihoood of current particle
+            for(int k = 0; k<lidarM8.numScans; k++){
+                // Probability of a true hit
+                if (y(k) >= lidarM8.minRange && y(k) <= lidarM8.maxRange){
+                    logHit = log(1/sqrt(2*M_PI*lidarM8.sigma2))+(-0.5*((y(k)-rangeParticle(k))*(y(k)-rangeParticle(k)))/lidarM8.sigma2);
+                }
+                else{
+                    logHit = -std::numeric_limits<double>::infinity();
+                }
+
+                // Probability of a short hit
+                if (y(k) >= 0 && y(k) <= rangeParticle(k)){
+                    logShort = log(lidarM8.lambda)-lidarM8.lambda*y(k)-log(1-exp(-lidarM8.lambda*rangeParticle(k)));
+                    // Precompute log(lambda)??
+                }
+                else{
+                    logShort = -std::numeric_limits<double>::infinity();
+                }
+                // Probaility of a random hit
+
+                if (y(k) >= 0 && y(k) <= lidarM8.maxRange){
+                    logRand = -log(lidarM8.maxRange); // precompute??
+                }
+                else{
+                    logRand = -std::numeric_limits<double>::infinity();
+                }
+
+                //----------------------------------------------------------------------
+                // Note:
+                // No max range needed as M* returns 0 for all invalid measurments
+                //----------------------------------------------------------------------
+
+                Eigen::VectorXd temp(3);
+                temp << lidarM8.lwHit+logHit, lidarM8.lwShort+logShort, lidarM8.lwRand+logRand;
+                lw(i) = lw(i) + logSumExponential(temp);
+            }
+        }
+        else{
+            // Set log likelihood to negative infinity of particle is in occipied space
+            lw(i) = -std::numeric_limits<double>::infinity();
+        }
+    }
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+// Lidar Scan Simulation
+//----------------------------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------------------------
 // NOTE:
@@ -23,7 +130,7 @@
 #define max(a,b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
 #define min(a,b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a < _b ? _a : _b; })
 
-//This function returns the intersection of two line segments in 2D
+// Intersecton point of two line segments
 int linSegInt(const double & x1, const double & x2, const double & y1,const double & y2,const double & x3, const double & x4, const double & y3, const double & y4, double *xint, double *yint){
     double num1, num2, den, u1, u2;
     int ind1, ind2, ind3;
@@ -45,10 +152,10 @@ int linSegInt(const double & x1, const double & x2, const double & y1,const doub
     return (ind1==1) && (ind2==0) && (ind3==0);
 }
 
-//This function updates the maps
-void findRange(Map & map, Scanner & scanner, Pose & pose, Eigen::VectorXd & range, Eigen::VectorXd & xr, Eigen::VectorXd & yr, Eigen::VectorXd & C){
+// Get range measrements based on current map
+void findRange(const Map & map,const Lidar & lidarM8,const Eigen::VectorXd& pose, Eigen::VectorXd & range, Eigen::VectorXd & xr, Eigen::VectorXd & yr, Eigen::VectorXd & C){
 
-    int L = scanner.numScans;
+    int L = lidarM8.numScans;
     range.resize(L);
     xr.resize(L);
     yr.resize(L);
@@ -65,14 +172,14 @@ void findRange(Map & map, Scanner & scanner, Pose & pose, Eigen::VectorXd & rang
     M = map.numY; //Number of y grid lines (should be num y cells + 1)
     
     //Map origin
-    double dx    = map.dx;
-    double dy    = map.dy;
-    double mapx0 = map.x0;
-    double mapy0 = map.y0;
+    double dx    = map.dE;
+    double dy    = map.dN;
+    double mapx0 = map.E0;
+    double mapy0 = map.N0;
     
-    x0 = pose.x - scanner.x0;
-    y0 = pose.y - scanner.y0;
-    psi0 = pose.psi - scanner.psi0;
+    x0 = pose(0) - lidarM8.x0;
+    y0 = pose(1) - lidarM8.y0;
+    psi0 = pose(2) - lidarM8.psi0;
     
     int xsi, xei, ysi, yei, xci, yci;
     double dxse, dyse, xc, yc, xdist, ydist;
@@ -81,16 +188,16 @@ void findRange(Map & map, Scanner & scanner, Pose & pose, Eigen::VectorXd & rang
     for(int i=0;i<L;i++){
         
         //Max range to begin with and no hit
-        range(i) = scanner.maxRange;
+        range(i) = lidarM8.maxRange;
         hit      = 0;
                 
         //Calc cos(heading) and sin(heading)
-        double cosHead = cos(M_PI*(psi0+scanner.startDeg+i*scanner.resDeg)/180.0);
-        double sinHead = sin(M_PI*(psi0+scanner.startDeg+i*scanner.resDeg)/180.0);
+        double cosHead = cos(M_PI*(psi0+lidarM8.startDeg+i*lidarM8.resDeg)/180.0);
+        double sinHead = sin(M_PI*(psi0+lidarM8.startDeg+i*lidarM8.resDeg)/180.0);
         
         //Calc end point of laser ray
-        x2 = x0+scanner.maxRange * sinHead;
-        y2 = y0+scanner.maxRange * cosHead;
+        x2 = x0+lidarM8.maxRange * sinHead;
+        y2 = y0+lidarM8.maxRange * cosHead;
 
         xr(i) = x2;
         yr(i) = y2;
@@ -104,58 +211,58 @@ void findRange(Map & map, Scanner & scanner, Pose & pose, Eigen::VectorXd & rang
         
         // Set clipping up as loop or use bool check with ".select()" a few times?
 
-        if((xs < map.x(0)) && (fabs(x1-x0) > eps)){
-            xs = map.x(0);
+        if((xs < map.E(0)) && (fabs(x1-x0) > eps)){
+            xs = map.E(0);
             ys = y0 + (xs-x0)*((y1-y0)/(x1-x0));
         }
-        if((ys < map.y(0)) && (fabs(y1-y0) > eps)){
-            ys = map.y(0);
+        if((ys < map.N(0)) && (fabs(y1-y0) > eps)){
+            ys = map.N(0);
             xs = x0 + (ys-y0)*((x1-x0)/(y1-y0));
         }
-        if((xs > map.x(N-1)) && (fabs(x1-x0) > eps)){
-            xs = map.x(N-1);
+        if((xs > map.E(N-1)) && (fabs(x1-x0) > eps)){
+            xs = map.E(N-1);
             ys = y0 + (xs-x0)*((y1-y0)/(x1-x0));
         }
-        if((ys > map.y(M-1)) && (fabs(y1-y0) > eps)){
-            ys = map.y(M-1);
+        if((ys > map.N(M-1)) && (fabs(y1-y0) > eps)){
+            ys = map.N(M-1);
             xs = x0 + (ys-y0)*((x1-x0)/(y1-y0));
         }
          
         xe = x1;
         ye = y1;
-        if((xe < map.x(0)) && (fabs(x1-x0) > eps)){
-            xe = map.x(0);
+        if((xe < map.E(0)) && (fabs(x1-x0) > eps)){
+            xe = map.E(0);
             ye = y0 + (xe-x0)*((y1-y0)/(x1-x0));
         }
-        if((ye < map.y(0)) && (fabs(y1-y0) > eps)){
-            ye = map.y(0);
+        if((ye < map.N(0)) && (fabs(y1-y0) > eps)){
+            ye = map.N(0);
             xe = x0 + (ye-y0)*((x1-x0)/(y1-y0));
         }
-        if((xe > map.x(N-1)) && (fabs(x1-x0) > eps)){
-            xe = map.x(N-1);
+        if((xe > map.E(N-1)) && (fabs(x1-x0) > eps)){
+            xe = map.E(N-1);
             ye = y0 + (xe-x0)*((y1-y0)/(x1-x0));
         }
-        if((ye > map.y(M-1)) && (fabs(y1-y0) > eps)){
-            ye = map.y(M-1);
+        if((ye > map.N(M-1)) && (fabs(y1-y0) > eps)){
+            ye = map.N(M-1);
             xe = x0 + (ye-y0)*((x1-x0)/(y1-y0));
         }
         
 
         //Check that the new point is inside the box
-        if (   (xs-map.x(0)>-eps) && (xs-map.x(N-1)<eps)
-            && (ys-map.y(0)>-eps) && (ys-map.y(M-1)<eps)
-            && (xe-map.x(0)>-eps) && (xe-map.x(N-1)<eps)
-            && (ye-map.y(0)>-eps) && (ye-map.y(M-1)<eps)){
+        if (   (xs-map.E(0)>-eps) && (xs-map.E(N-1)<eps)
+            && (ys-map.N(0)>-eps) && (ys-map.N(M-1)<eps)
+            && (xe-map.E(0)>-eps) && (xe-map.E(N-1)<eps)
+            && (ye-map.N(0)>-eps) && (ye-map.N(M-1)<eps)){
             
             //Determine x and y extremities for laser on this azimuth and polar angles
             //Calc min and max integers for x and y axes
-            xsi = floor(max((double)0.0   , (double)((xs-map.x(0))/dx)));
+            xsi = floor(max((double)0.0   , (double)((xs-map.E(0))/dx)));
             xsi = min((double)(N-1) , (double)xsi);
-            xei = floor(max((double)0.0   , (double)((xe-map.x(0))/dx)));
+            xei = floor(max((double)0.0   , (double)((xe-map.E(0))/dx)));
             xei = min((double)(N-1) , (double)xei);
-            ysi = floor(max((double)0.0   , (double)((ys-map.y(0))/dy)));
+            ysi = floor(max((double)0.0   , (double)((ys-map.N(0))/dy)));
             ysi = min((double)(M-1) , (double)ysi);
-            yei = floor(max((double)0.0   , (double)((ye-map.y(0))/dy)));
+            yei = floor(max((double)0.0   , (double)((ye-map.N(0))/dy)));
             yei = min((double)(M-1) , (double)yei);
             
             //Set the difference of start to end
@@ -173,13 +280,13 @@ void findRange(Map & map, Scanner & scanner, Pose & pose, Eigen::VectorXd & rang
                 //Figure out which way to move next
                 if(dxse > 0.0){
                     if(xci<N-1){
-                        xdist = (map.x(xci+1) - xc)/dxse;
+                        xdist = (map.E(xci+1) - xc)/dxse;
                     } else {
                         xdist = 1e20;
                     }
                 } else if (dxse < 0.0){
                     if(xci>0){
-                        xdist = (map.x(xci) - xc)/dxse;
+                        xdist = (map.E(xci) - xc)/dxse;
                     } else {
                         xdist = 1e20;
                     }
@@ -188,13 +295,13 @@ void findRange(Map & map, Scanner & scanner, Pose & pose, Eigen::VectorXd & rang
                 }
                 if(dyse > 0.0){
                     if(yci<M-1){
-                        ydist = (map.y(yci+1) - yc)/dyse;
+                        ydist = (map.N(yci+1) - yc)/dyse;
                     } else {
                         ydist = 1e20;
                     }
                 } else if (dyse < 0.0){
                     if(yci > 0){
-                        ydist = (map.y(yci) - yc)/dyse;
+                        ydist = (map.N(yci) - yc)/dyse;
                     } else {
                         ydist = 1e20;
                     }
@@ -206,47 +313,47 @@ void findRange(Map & map, Scanner & scanner, Pose & pose, Eigen::VectorXd & rang
                     if((dxse > 0.0) && (dyse > 0.0)){
                         xci = min(N-1,xci+1);
                         yci = min(M-1,yci+1);
-                        yc  = ys+(map.x(xci)-xs)*(ye-ys)/dxse;
-                        xc  = map.x(xci);
+                        yc  = ys+(map.E(xci)-xs)*(ye-ys)/dxse;
+                        xc  = map.E(xci);
                     } else if ((dxse < 0.0) && (dyse > 0.0)) {
                         xci = max(0,xci-1);
                         yci = min(M-1,yci+1);
-                        yc  = ys+(map.x(xci)-xs)*(ye-ys)/dxse;
-                        xc  = map.x(xci);
+                        yc  = ys+(map.E(xci)-xs)*(ye-ys)/dxse;
+                        xc  = map.E(xci);
                     } else if ((dxse > 0.0) && (dyse < 0.0)){
                         xci = min(N-1,xci+1);
                         yci = max(0,yci-1);
-                        yc  = ys+(map.x(xci)-xs)*(ye-ys)/dxse;
-                        xc  = map.x(xci);
+                        yc  = ys+(map.E(xci)-xs)*(ye-ys)/dxse;
+                        xc  = map.E(xci);
                     } else if ((dxse < 0.0) && (dyse < 0.0)) {
                         xci = max(0,xci-1);
                         yci = max(0,yci-1);
-                        yc  = ys+(map.x(xci)-xs)*(ye-ys)/dxse;
-                        xc  = map.x(xci);
+                        yc  = ys+(map.E(xci)-xs)*(ye-ys)/dxse;
+                        xc  = map.E(xci);
                     } else {
                         break;
                     }
                 } else if(xdist < ydist){
                     if(dxse > 0.0){
                         xci = min(N-1,xci+1);
-                        yc  = ys+(map.x(xci)-xs)*(ye-ys)/dxse;
-                        xc  = map.x(xci);
+                        yc  = ys+(map.E(xci)-xs)*(ye-ys)/dxse;
+                        xc  = map.E(xci);
                     } else if (dxse < 0.0) {
                         xci = max(0,xci-1);
-                        yc  = ys+(map.x(xci)-xs)*(ye-ys)/dxse;
-                        xc  = map.x(xci);
+                        yc  = ys+(map.E(xci)-xs)*(ye-ys)/dxse;
+                        xc  = map.E(xci);
                     } else {
                         break;
                     }
                 } else {
                     if(dyse > 0.0){
                         yci = min(M-1,yci+1);
-                        xc  = xs+(map.y(yci)-ys)*(xe-xs)/dyse;
-                        yc  = map.y(yci);
+                        xc  = xs+(map.N(yci)-ys)*(xe-xs)/dyse;
+                        yc  = map.N(yci);
                     } else if (dyse < 0.0) {
                         yci = max(0,yci-1);
-                        xc  = xs+(map.y(yci)-ys)*(xe-xs)/dyse;
-                        yc  = map.y(yci);
+                        xc  = xs+(map.N(yci)-ys)*(xe-xs)/dyse;
+                        yc  = map.N(yci);
                     } else {
                         break;
                     }
@@ -255,10 +362,10 @@ void findRange(Map & map, Scanner & scanner, Pose & pose, Eigen::VectorXd & rang
                 if(map.z(yci + M*xci)>0){
 
                     //Figure out intersection points of ray line with four sides of box
-                    ind[0]=linSegInt(map.x(xci),map.x(xci)+dx,map.y(yci)+dy,map.y(yci)+dy,xs,xe,ys,ye,&xint[0],&yint[0]);
-                    ind[1]=linSegInt(map.x(xci),map.x(xci)+dx,map.y(yci),map.y(yci),xs,xe,ys,ye,&xint[1],&yint[1]);
-                    ind[2]=linSegInt(map.x(xci),map.x(xci),map.y(yci),map.y(yci)+dy,xs,xe,ys,ye,&xint[2],&yint[2]);
-                    ind[3]=linSegInt(map.x(xci)+dx,map.x(xci)+dx,map.y(yci),map.y(yci)+dy,xs,xe,ys,ye,&xint[3],&yint[3]);
+                    ind[0]=linSegInt(map.E(xci),map.E(xci)+dx,map.N(yci)+dy,map.N(yci)+dy,xs,xe,ys,ye,&xint[0],&yint[0]);
+                    ind[1]=linSegInt(map.E(xci),map.E(xci)+dx,map.N(yci),map.N(yci),xs,xe,ys,ye,&xint[1],&yint[1]);
+                    ind[2]=linSegInt(map.E(xci),map.E(xci),map.N(yci),map.N(yci)+dy,xs,xe,ys,ye,&xint[2],&yint[2]);
+                    ind[3]=linSegInt(map.E(xci)+dx,map.E(xci)+dx,map.N(yci),map.N(yci)+dy,xs,xe,ys,ye,&xint[3],&yint[3]);
                     
                     //Which line did we intersect with
                     int idxInt = 0;

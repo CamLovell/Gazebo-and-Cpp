@@ -358,7 +358,8 @@ navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o: /usr/inclu
 navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o: /usr/include/eigen3/Eigen/src/plugins/ReshapedMethods.h
 
 navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/Eig.hpp
-navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/lidar.hpp
+navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/lidar.h
+navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o: /home/cameron/NUMarine_ws/src/navigation/src/map.h
 navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o: /home/cameron/NUMarine_ws/src/navigation/test/src/lidar.cpp
 navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o: /usr/include/eigen3/Eigen/Cholesky
 navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o: /usr/include/eigen3/Eigen/Core
