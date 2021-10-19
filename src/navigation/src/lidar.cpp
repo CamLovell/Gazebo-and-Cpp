@@ -21,8 +21,13 @@ void lidatInit(Lidar& lidarParams){
     lidarParams.x0 = 0.0; // Relative x(forwards) offset of lidar from body
     lidarParams.y0 = 0.0; // Relative y(sideways) offset of lidar from body
     lidarParams.psi0 = 0.0; // Relative angle(vetical) offset of lidar from body
+
     lidarParams.startDeg = 0.0; // Starting location of scan in degrees
-    lidarParams.resDeg = 360.0/10400.0; //10400 scans per revolution
+    // lidarParams.resDeg = 360.0/10400.0; //10400 scans per revolution
+    lidarParams.resDeg = 1.0; //10400 scans per revolution
+    lidarParams.stopDeg = 360-lidarParams.resDeg; // Starting location of scan in degrees
+
+    lidarParams.scanRes = 0.003; //10400 scans per revolution
     lidarParams.maxRange = 150.0; // Maximum range of lidar in m
     lidarParams.minRange = 1.0; // Minimum range of lidar in m
     lidarParams.sigma2 = sigma*sigma; // Precomputed sigma^2
@@ -30,7 +35,11 @@ void lidatInit(Lidar& lidarParams){
     lidarParams.lwHit = log(wHit); // log hit weight
     lidarParams.lwShort =  log(wShort); // log short weight
     lidarParams.lwRand = log(wRand); // log random weight
-    lidarParams.numScans = 10400.0; // May need to look more closely
+    // lidarParams.numScans = 10400.0; // May need to look more closely
+    lidarParams.numScans = 360.0; // May need to look more closely
+
+    lidarParams.theta.setLinSpaced(lidarParams.numScans,lidarParams.startDeg,lidarParams.stopDeg); // Vector of scan line angles
+    // std::cout << lidarParams.theta(359) << std::endl;
 }
 
 

@@ -2013,6 +2013,33 @@ test/src/main.cpp.s:
 	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/main.cpp.s
 .PHONY : test/src/main.cpp.s
 
+test/src/map.o: test/src/map.cpp.o
+
+.PHONY : test/src/map.o
+
+# target to build an object file
+test/src/map.cpp.o:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.o
+.PHONY : test/src/map.cpp.o
+
+test/src/map.i: test/src/map.cpp.i
+
+.PHONY : test/src/map.i
+
+# target to preprocess a source file
+test/src/map.cpp.i:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.i
+.PHONY : test/src/map.cpp.i
+
+test/src/map.s: test/src/map.cpp.s
+
+.PHONY : test/src/map.s
+
+# target to generate assembly for a file
+test/src/map.cpp.s:
+	cd /home/cameron/NUMarine_ws/build && $(MAKE) -f navigation/CMakeFiles/catchTests.dir/build.make navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.s
+.PHONY : test/src/map.cpp.s
+
 test/src/quaternionConversions.o: test/src/quaternionConversions.cpp.o
 
 .PHONY : test/src/quaternionConversions.o
@@ -2221,6 +2248,9 @@ help:
 	@echo "... test/src/main.o"
 	@echo "... test/src/main.i"
 	@echo "... test/src/main.s"
+	@echo "... test/src/map.o"
+	@echo "... test/src/map.i"
+	@echo "... test/src/map.s"
 	@echo "... test/src/quaternionConversions.o"
 	@echo "... test/src/quaternionConversions.i"
 	@echo "... test/src/quaternionConversions.s"

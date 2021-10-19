@@ -97,6 +97,7 @@ void imuLogLiklihood(const Eigen::MatrixXd& y, const Eigen::MatrixXd& x, const i
 // Coordinate conversions between NED and Geodetic
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
+
     // Ensure input dimensions are correct
     assert(isInit);
     assert(rBNn.rows() == 3);     
@@ -124,7 +125,9 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     Eig::atan2(rBOe.row(2).transpose().array()+f*f*b*sintheta3.array(),p.array()-d*d*a*costheta3.array(),temp0);
     Eig::atan2(rBOe.row(1).transpose(),p+rBOe.row(0).transpose(),temp1);
 
-
+    // std::cout <<  "start" << std::endl;
+    // std::cout <<  rNOe.norm() << std::endl;
+    // std::cout <<  "stop" << std::endl;
     //!!Altitude measurement is broken however this is not used in the boat model so not a big deal for now!!
     //// rBOg.row(2) = ((p.array()/temp0.array().cos()))+(pN.array()/((rNOe.row(0).array()*(M_PI/180)).cos()))).matrix();
 // p.array()/(temp0.array().cos()+cos(rNOg(0))) 
@@ -135,7 +138,7 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     // temp2 = (rBOe.row(2).array()/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
     
     // Alt is dodgy as fuck!!!
-    rBOg << temp0.transpose()*180/M_PI, 2*temp1.transpose()*180/M_PI,(rBOe.colwise().norm().array()-rNOe.norm()+4.60823*rBNn(2));
+    rBOg << temp0.transpose()*180/M_PI, 2*temp1.transpose()*180/M_PI,(rBOe.colwise().norm().array()-rNOe.norm()+4.60823*rBNn.row(2).array());
     // std::cout << rBOg << std::endl;
 
     // rBOg << temp0*180/M_PI, 2*temp1*180/M_PI,temp2;
@@ -152,34 +155,35 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
 }
 
 // Mad broken
+
 void geotoNED(const Eigen::MatrixXd& rBOg, Eigen::MatrixXd& rBNn){
     // Ensure input dimensions are correct
     assert(isInit);
     assert(rBOg.rows() == 3);     
     
-    // Declare Required Variables
-    Eigen::VectorXd N(rBOg.cols());
-    Eigen::MatrixXd rBOe(3,rBOg.cols());
+    // // Declare Required Variables
+    // Eigen::VectorXd N(rBOg.cols());
+    // Eigen::MatrixXd rBOe(3,rBOg.cols());
     rBNn.resize(3,rBOg.cols());  
 
-    N = (a*a)/(a*a*rBOg.row(0).array().cos()*rBOg.row(0).array().cos()+b*b*rBOg.row(0).array().sin()*rBOg.row(0).array().sin()).sqrt();
+    // N = (a*a)/(a*a*rBOg.row(0).array().cos()*rBOg.row(0).array().cos()+b*b*rBOg.row(0).array().sin()*rBOg.row(0).array().sin()).sqrt();
 
-    rBOe.row(0) = (N.array()+rBOg.row(2).array())*rBOg.row(0).array().cos()*rBOg.row(1).array().cos();
-    rBOe.row(1) = (N.array()+rBOg.row(2).array())*rBOg.row(0).array().cos()*rBOg.row(1).array().sin();
-    rBOe.row(2) = (((b*b)/(a*a))*N.array()+rBOg.row(2).array())*rBOg.row(0).array().sin();
+    // rBOe.row(0) = (N.array()+rBOg.row(2).array())*rBOg.row(0).array().cos()*rBOg.row(1).array().cos();
+    // rBOe.row(1) = (N.array()+rBOg.row(2).array())*rBOg.row(0).array().cos()*rBOg.row(1).array().sin();
+    // rBOe.row(2) = (((b*b)/(a*a))*N.array()+rBOg.row(2).array())*rBOg.row(0).array().sin();
     
-    std::cout << rBOg << std::endl;
-    // Convert to ECEF coordinates
-    rBNn = Rne.transpose()*(rBOe - rNOe);
+    // std::cout << rBOg << std::endl;
+    // // Convert to ECEF coordinates
+    // rBNn = Rne.transpose()*(rBOe - rNOe);
 
-    // GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
-    // // GeographicLib::Geocentric earth(a, f);
-    // GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
-    // double x, y, z;
-    // sydneyRegatta.Forward(rBOg(0),rBOg(1),rBOg(2),x, y, z);
+    GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
+    // GeographicLib::Geocentric earth(a, f);
+    GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
+    double x, y, z;
+    sydneyRegatta.Forward(rBOg(0),rBOg(1),rBOg(2),x, y, z);
     // std::cout << x << " " << y << " " << z << std::endl;
-    // // std::cout << rBNn << std::endl;
-    // rBNn << y, x, z;
+    // std::cout << rBNn << std::endl;
+    rBNn << y, x, z;
     
 
 }

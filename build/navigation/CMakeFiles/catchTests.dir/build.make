@@ -122,9 +122,22 @@ navigation/CMakeFiles/catchTests.dir/test/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/catchTests.dir/test/src/main.cpp.s"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cameron/NUMarine_ws/src/navigation/test/src/main.cpp -o CMakeFiles/catchTests.dir/test/src/main.cpp.s
 
+navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.o: navigation/CMakeFiles/catchTests.dir/flags.make
+navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.o: /home/cameron/NUMarine_ws/src/navigation/test/src/map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.o"
+	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/catchTests.dir/test/src/map.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/test/src/map.cpp
+
+navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/catchTests.dir/test/src/map.cpp.i"
+	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cameron/NUMarine_ws/src/navigation/test/src/map.cpp > CMakeFiles/catchTests.dir/test/src/map.cpp.i
+
+navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/catchTests.dir/test/src/map.cpp.s"
+	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cameron/NUMarine_ws/src/navigation/test/src/map.cpp -o CMakeFiles/catchTests.dir/test/src/map.cpp.s
+
 navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o: navigation/CMakeFiles/catchTests.dir/flags.make
 navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o: /home/cameron/NUMarine_ws/src/navigation/test/src/quaternionConversions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/test/src/quaternionConversions.cpp
 
 navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.i: cmake_force
@@ -137,7 +150,7 @@ navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.s: cmake
 
 navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.o: navigation/CMakeFiles/catchTests.dir/flags.make
 navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.o: /home/cameron/NUMarine_ws/src/navigation/test/src/wamv.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.o"
 	cd /home/cameron/NUMarine_ws/build/navigation && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/catchTests.dir/test/src/wamv.cpp.o -c /home/cameron/NUMarine_ws/src/navigation/test/src/wamv.cpp
 
 navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.i: cmake_force
@@ -155,6 +168,7 @@ catchTests_OBJECTS = \
 "CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o" \
 "CMakeFiles/catchTests.dir/test/src/lidar.cpp.o" \
 "CMakeFiles/catchTests.dir/test/src/main.cpp.o" \
+"CMakeFiles/catchTests.dir/test/src/map.cpp.o" \
 "CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o" \
 "CMakeFiles/catchTests.dir/test/src/wamv.cpp.o"
 
@@ -166,13 +180,14 @@ catchTests_EXTERNAL_OBJECTS =
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/test/src/helpingFunctions.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/test/src/lidar.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/test/src/main.cpp.o
+/home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/test/src/map.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/test/src/quaternionConversions.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/test/src/wamv.cpp.o
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/build.make
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: /home/cameron/NUMarine_ws/devel/lib/libcommon.so
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: /usr/local/lib/libGeographic.so.19.2.0
 /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests: navigation/CMakeFiles/catchTests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cameron/NUMarine_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable /home/cameron/NUMarine_ws/devel/lib/navigation/catchTests"
 	cd /home/cameron/NUMarine_ws/build/navigation && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/catchTests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

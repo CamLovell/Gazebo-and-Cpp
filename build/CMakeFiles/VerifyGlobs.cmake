@@ -55,6 +55,7 @@ set(OLD_GLOB
   "/home/cameron/NUMarine_ws/src/navigation/test/src/helpingFunctions.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/lidar.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/main.cpp"
+  "/home/cameron/NUMarine_ws/src/navigation/test/src/map.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/quaternionConversions.cpp"
   "/home/cameron/NUMarine_ws/src/navigation/test/src/wamv.cpp"
   )

@@ -1,6 +1,7 @@
 #include<cmath>
 #include<Eigen/Core>
 #include <iostream>
+#include <vector>
 #include <fstream>
 #include <Eigen/Dense>
 #include <sstream> 

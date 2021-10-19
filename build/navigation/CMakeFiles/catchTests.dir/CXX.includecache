@@ -23,8 +23,10 @@ map.h
 /home/cameron/NUMarine_ws/src/navigation/src/map.h
 
 /home/cameron/NUMarine_ws/src/navigation/src/map.h
+lidar.h
+/home/cameron/NUMarine_ws/src/navigation/src/lidar.h
 
-/home/cameron/NUMarine_ws/src/navigation/test/src/lidar.cpp
+/home/cameron/NUMarine_ws/src/navigation/test/src/map.cpp
 cmath
 -
 Eigen/Core
@@ -33,10 +35,10 @@ iostream
 -
 catch2/catch.hpp
 -
-lidar.h
-/home/cameron/NUMarine_ws/src/navigation/test/src/lidar.h
 map.h
 /home/cameron/NUMarine_ws/src/navigation/test/src/map.h
+lidar.h
+/home/cameron/NUMarine_ws/src/navigation/test/src/lidar.h
 Eig.hpp
 /home/cameron/NUMarine_ws/src/navigation/test/src/Eig.hpp
 
