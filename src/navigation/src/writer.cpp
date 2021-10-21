@@ -13,9 +13,10 @@ void likelyCallback(const navigation::state::ConstPtr& stateMsg){
 }
 void trueCallback(const gazebo_msgs::ModelStates::ConstPtr& nedMsg){
     Eigen::MatrixXd q(4,1), RPY;
-    q << nedMsg->pose[11].orientation.w,nedMsg->pose[11].orientation.x,nedMsg->pose[11].orientation.y,nedMsg->pose[11].orientation.z;
+    int idx = 18;
+    q << nedMsg->pose[idx].orientation.w,nedMsg->pose[idx].orientation.x,nedMsg->pose[idx].orientation.y,nedMsg->pose[idx].orientation.z;
     quaterniontoRPY(q, RPY);
-    trueState << nedMsg->pose[11].position.x, nedMsg->pose[11].position.y,RPY(2),nedMsg->twist[11].linear.x, nedMsg->twist[11].linear.y, nedMsg->twist[11].angular.z;
+    trueState << nedMsg->pose[idx].position.x, nedMsg->pose[idx].position.y,RPY(2),nedMsg->twist[idx].linear.x, nedMsg->twist[idx].linear.y, nedMsg->twist[idx].angular.z;
 }
 
 int main(int argc, char **argv){

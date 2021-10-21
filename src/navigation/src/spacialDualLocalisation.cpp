@@ -19,7 +19,7 @@ static Eigen::VectorXd gpsMeas(3), imuMeas(4), u(4);
 
 void gpsCallBack(const sensor_msgs::NavSatFix::ConstPtr& fix){
     gpsMeas << fix->latitude, fix->longitude, fix->altitude;
-    ROS_INFO("Latitude = %.4f\nLongitude = %.4f\naltitude = %.4f\n", fix->latitude, fix->longitude, fix->altitude);
+    // ROS_INFO("Latitude = %.4f\nLongitude = %.4f\naltitude = %.4f\n", fix->latitude, fix->longitude, fix->altitude);
 }
 void imuCallBack(const sensor_msgs::Imu::ConstPtr& imuMsg){
     // Eigen::MatrixXd q(4,1), RPY;
