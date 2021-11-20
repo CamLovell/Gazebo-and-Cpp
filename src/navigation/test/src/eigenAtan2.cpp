@@ -8,6 +8,7 @@
 
 #include "Eig.hpp"
 
+// Testing Eigen Atan2 function
 SCENARIO("Testing atan2: axis inputs") {
     GIVEN("Equal vector input and output lengths"){
         Eigen::VectorXd num(9),den(9),expected(9),result, testing(3);

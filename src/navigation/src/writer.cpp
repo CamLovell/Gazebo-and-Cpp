@@ -8,10 +8,14 @@
 
 static Eigen::VectorXd trueState(6), estimatedState(6);
 
+
 void likelyCallback(const navigation::state::ConstPtr& stateMsg){
+    // Grab and extract likely state
     estimatedState << stateMsg->N,stateMsg->E,stateMsg->psi,stateMsg->u,stateMsg->v,stateMsg->r;
 }
+
 void trueCallback(const gazebo_msgs::ModelStates::ConstPtr& nedMsg){
+    // Grab and extract true state
     Eigen::MatrixXd q(4,1), RPY;
     int idx = 18;
     q << nedMsg->pose[idx].orientation.w,nedMsg->pose[idx].orientation.x,nedMsg->pose[idx].orientation.y,nedMsg->pose[idx].orientation.z;
@@ -20,6 +24,7 @@ void trueCallback(const gazebo_msgs::ModelStates::ConstPtr& nedMsg){
 }
 
 int main(int argc, char **argv){
+
     //Initialise ROS
     ros::init(argc, argv, "dataWriter");
 
@@ -29,8 +34,8 @@ int main(int argc, char **argv){
     ros::Subscriber estimatedSub = handler.subscribe<navigation::state>("/NUMarine/state/likely", 1, likelyCallback);
     
     // Set up files to write to
-    std::ofstream trueData("src/navigation/data/trueState.csv");
-    std::ofstream estimated("src/navigation/data/estimatedState.csv");
+    std::ofstream trueData("src/navigation/data/trueState_vid.csv");
+    std::ofstream estimated("src/navigation/data/estimatedState_vid.csv");
 
     // Write collumn headings
     trueData << "N,E,psi,u,v,r\n";
@@ -47,7 +52,7 @@ int main(int argc, char **argv){
         trueData << trueState(0) << "," << trueState(1) << "," << trueState(2) << "," << trueState(3) << "," << trueState(4) << "," << trueState(5) << "," << "\n";
         estimated << estimatedState(0) << "," << estimatedState(1) << "," << estimatedState(2) << "," << estimatedState(3) << "," << estimatedState(4) << "," << estimatedState(5) << "," << "\n";
         
-        // Visual inidiacation in terminal that files are being written
+        // Visual indication in terminal that files are being written
         if(count==16){
             std::cout << "\33[2K" << "Writing" << "\r"; //Reset dots
             count=0;
@@ -57,12 +62,10 @@ int main(int argc, char **argv){
         count++;        
 
         rate.sleep();
-        // ros::shutdown();
     }
 
-    // Close the csv files to save them propperly after node shutdown
+    // Close the csv files to save them properly after node shutdown
     trueData.close();
     estimated.close();
-
 
 }

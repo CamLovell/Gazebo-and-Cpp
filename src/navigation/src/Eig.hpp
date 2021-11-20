@@ -9,6 +9,4 @@ namespace Eig {
 }
 Eigen::MatrixXd readCSV(std::string file, int rows, int cols);
 
-// static Eig_funcs Eig;
-
 #endif

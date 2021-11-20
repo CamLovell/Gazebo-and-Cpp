@@ -6,6 +6,7 @@
 
 #include "wamv.h"
 
+// Initialise the parameters of the boat
 void intiBoat(boatParams& params){
     double d = 2, l = 2;
 
@@ -22,6 +23,7 @@ void intiBoat(boatParams& params){
     // params.sigmaX.setZero();
 
 }
+
 // Vectorised Boat Dynamics to deal with particle input
 void boatDynamics(const Eigen::MatrixXd& x, const Eigen::MatrixXd& u, const boatParams& param, Eigen::MatrixXd& dx){
     
@@ -49,6 +51,8 @@ void boatDynamics(const Eigen::MatrixXd& x, const Eigen::MatrixXd& u, const boat
 
 }
 
+
+// Process model based on boat dynamics above
 void processModel(const Eigen::MatrixXd& xt, const Eigen::MatrixXd& u, const boatParams& param,const double& dt, Eigen::MatrixXd& xtp1){
     // Steps for finner random noise in inputs
     int k = 50;

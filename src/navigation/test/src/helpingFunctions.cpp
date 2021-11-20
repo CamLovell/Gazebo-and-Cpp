@@ -4,6 +4,7 @@
 #include <fstream>
 #include "helpers.h"
 
+// Testing for weighted resampling
 SCENARIO("Testing weighted resample") {
     GIVEN("Equal wieghted input"){
         Eigen::VectorXd w(10), lw;
@@ -65,6 +66,7 @@ SCENARIO("Testing weighted resample") {
     }
 }
 
+// Testing for log sum exponential funtion
 SCENARIO("Normalising with Log sum exponential"){
     GIVEN("A normalised input"){
         Eigen::VectorXd w(10), lw(10);

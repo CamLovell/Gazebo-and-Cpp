@@ -7,6 +7,7 @@
 
 #include "wamv.h"
 
+// Testing boat dynamics output
 SCENARIO("Single vector inputs into dynamics") {
     GIVEN("Zero initial states and straight thrusters"){
         Eigen::MatrixXd x(6,1),u(4,1),dx;
@@ -80,6 +81,8 @@ SCENARIO("Single vector inputs into dynamics") {
         }
     }
 }
+
+// Testing boat dynamics output for multiple particles simultaneously
 SCENARIO("Matrix input for multiple particles") {
     GIVEN("All single vector cases combined into one input"){
         Eigen::MatrixXd x(6,3),u(4,3),dx;

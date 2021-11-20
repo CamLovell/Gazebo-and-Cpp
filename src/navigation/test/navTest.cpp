@@ -12,7 +12,9 @@
 #include "Eig.hpp"
 #include "helpers.h"
 
-
+//---------------------------------------------------------------------------------------------------
+// OLD GOOGLE TESTING FRAMEWORK, NOT USED ANYMORE
+//---------------------------------------------------------------------------------------------------
 class eigen_atan2: public ::testing::Test { 
 public: 
    eigen_atan2( ) {} 

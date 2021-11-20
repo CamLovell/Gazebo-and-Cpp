@@ -2,6 +2,7 @@
 #include <Eigen/Core>
 #include "spacialDual.h"
 
+// Testing quaternion conversion
 SCENARIO("Quaternion measurment to roll pitch yaw") {
     GIVEN("A quaternion measument of rotation"){
         Eigen::MatrixXd Q(4,1), resultRPY;
@@ -24,6 +25,7 @@ SCENARIO("Quaternion measurment to roll pitch yaw") {
     }
 }
 
+// Testing quaternion conversion
 SCENARIO("Roll pitch yaw measurment to quaternion") {
     GIVEN("An RPY measument of rotation"){
         Eigen::MatrixXd RPY(3,1), resultQ;

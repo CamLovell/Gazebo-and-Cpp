@@ -10,7 +10,7 @@
 
 
 void mapInit(const Eigen::VectorXd& origin, Map& map){
-    // Map size variables, this will most likely be the biggest hinderance on speed
+    // Map size variables, this will most likely be the biggest hindrance on speed
     double front = 150, back = 150, left = 150, right = 150;
     map.dE = 0.05;
     map.dN = map.dE;
@@ -24,14 +24,18 @@ void mapInit(const Eigen::VectorXd& origin, Map& map){
     map.numY = map.N.size();
     map.numX = map.E.size();
 
-    // Create logOdds matrix, intially zeros i.e. likelihood of 1 i.e. we know nothing
+    // Create logOdds matrix, initially zeros i.e. likelihood of 1 i.e. we know nothing
     map.logOdds.setZero(map.numY,map.numX);
 
-    // Intialise map as zeros to avoid odd initialisation with random memory values
+    // Initialise map as zeros to avoid odd initialisation with random memory values
     // You should update this with a map update before it is used for localisation
     map.z.setZero(map.numY,map.numX);
     
 }
+
+//--------------------------------------------------------------------------------------------------------------------------
+// Map update function
+//--------------------------------------------------------------------------------------------------------------------------
 
 void mapUpdate(const Eigen::VectorXd & y,const Eigen::VectorXd & x, const Lidar & lidar, Map & map){
     // Declare Variables
@@ -43,7 +47,7 @@ void mapUpdate(const Eigen::VectorXd & y,const Eigen::VectorXd & x, const Lidar 
     Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic> idxN(lidar.theta.cols(),measRes), idxE(lidar.theta.cols(),measRes);    
 
 
-    // Calculate matricies of points (N and E) at which to change logOdds
+    // Calculate matrices of points (N and E) at which to change logOdds
     measInt.setLinSpaced(measRes,0.0,maxDist);    
 
     E_meas << (x(1) + ((lidar.theta.array()*M_PI/180).sin().matrix() * measInt.transpose()).array()).matrix();
@@ -54,13 +58,13 @@ void mapUpdate(const Eigen::VectorXd & y,const Eigen::VectorXd & x, const Lidar 
     idxE = ((map.E.rows()-1)*(E_meas.array()-map.E(0))/(map.E(map.E.rows()-1)-map.E(0))).round().matrix();
     
 
-    // Check which measurments are useable 
+    // Check which measurements are useable 
     for(int i=0; i<y.rows();i++){
         if(y(i) < lidar.maxRange){
             isUseable.push_back(i);
         }     
     }
-    // If no useable measurments return function with no changes to logOdds
+    // If no useable measurements return function with no changes to logOdds
     if(isUseable.size()==0){
         return;
     }
@@ -68,7 +72,7 @@ void mapUpdate(const Eigen::VectorXd & y,const Eigen::VectorXd & x, const Lidar 
 
     Eigen::MatrixXd checkN = (N_meas.array() < map.N(map.N.rows()-1) && N_meas.array() > map.N(0) && E_meas.array() < map.E(map.E.rows()-1) && E_meas.array() > map.E(0)).select(1, Eigen::MatrixXd::Zero(N_meas.rows(),N_meas.cols()));
 
-    // Loop through useable measurments and measrument intervals
+    // Loop through useable measurements and measurement intervals
     for(int i=0;i<isUseable.size();i++){
         int index = isUseable[i];
         count1++;                        
@@ -79,8 +83,8 @@ void mapUpdate(const Eigen::VectorXd & y,const Eigen::VectorXd & x, const Lidar 
                 count++;                        
                 int idxNk = idxN(index,k);
                 int idxEk = idxE(index,k);
-                //Assume pass if 0 measurment returned
-                //  ! Could result in close objects being considered not there however a max range measurment is far more likely
+                //Assume pass if 0 measurement returned
+                //  ! Could result in close objects being considered not there however a max range measurement is far more likely
                 if(y(index) == 0){
                     map.logOdds(idxNk,idxEk) -= map.passChange/5.0;
                 }
@@ -105,6 +109,7 @@ void mapUpdate(const Eigen::VectorXd & y,const Eigen::VectorXd & x, const Lidar 
             
         }
     }
+    
     count2 = count/count1;
     // Saturate logOdds to ensure their magnitude does not get too large
     map.logOdds = (map.logOdds.array() > 50).select(50, map.logOdds);
@@ -112,7 +117,7 @@ void mapUpdate(const Eigen::VectorXd & y,const Eigen::VectorXd & x, const Lidar 
 
     // Set to 0 if unlikely and 1 if likely
     // This could be used for other boolian comparisons, it took me way too long to understand this
-    map.z = (map.logOdds.array() > 0).select(1, Eigen::MatrixXd::Zero(map.numY,map.numX)); // Wow I think I understand Eigen logial operations now
+    map.z = (map.logOdds.array() > 0).select(1, Eigen::MatrixXd::Zero(map.numY,map.numX)); // Wow I think I understand Eigen logical operations now
 
 
 }

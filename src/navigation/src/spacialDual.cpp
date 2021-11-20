@@ -55,7 +55,7 @@ void gpsLogLiklihood(const Eigen::VectorXd& y, const Eigen::MatrixXd& x, const i
     lw.setZero(M);
     NED.setZero(3,M);
     
-    //What the actual fuck????
+    // Negatives from weird map rotation and Flipped as x and y tanken to be E and N
     NED.row(0) = -x.row(1);
     NED.row(1) = -x.row(0);
     
@@ -125,33 +125,10 @@ void NEDtoGeo(const Eigen::MatrixXd& rBNn, Eigen::MatrixXd& rBOg){
     Eig::atan2(rBOe.row(2).transpose().array()+f*f*b*sintheta3.array(),p.array()-d*d*a*costheta3.array(),temp0);
     Eig::atan2(rBOe.row(1).transpose(),p+rBOe.row(0).transpose(),temp1);
 
-    // std::cout <<  "start" << std::endl;
-    // std::cout <<  rNOe.norm() << std::endl;
-    // std::cout <<  "stop" << std::endl;
-    //!!Altitude measurement is broken however this is not used in the boat model so not a big deal for now!!
-    //// rBOg.row(2) = ((p.array()/temp0.array().cos()))+(pN.array()/((rNOe.row(0).array()*(M_PI/180)).cos()))).matrix();
-// p.array()/(temp0.array().cos()+cos(rNOg(0))) 
-//(pN.array()/cos(rNOg(0)*M_PI/180))-(p.array()/temp0.array().cos())
-// rBOe.norm()-rNOe.norm()
 
-    // temp2 = ((-rBOe.row(2).transpose().array()+rNOe.row(2).transpose().array())/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
-    // temp2 = (rBOe.row(2).array()/temp0.array().sin()) - ((b*b)/(a*a*temp0.array().cos()*temp0.array().cos()+b*b*temp0.array().sin()*temp0.array().sin()).sqrt());
     
-    // Alt is dodgy as fuck!!!
+    // Altitude does not work however is not used // too much time wasted
     rBOg << temp0.transpose()*180/M_PI, 2*temp1.transpose()*180/M_PI,(rBOe.colwise().norm().array()-rNOe.norm()+4.60823*rBNn.row(2).array());
-    // std::cout << rBOg << std::endl;
-
-    // rBOg << temp0*180/M_PI, 2*temp1*180/M_PI,temp2;
-    // <latitude_deg>-33.724223</latitude_deg>
-    // <longitude_deg>150.679736</longitude_deg>
-    // <elevation>0.0</elevation>
-
-    // GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
-    // // GeographicLib::Geocentric earth(a, f);
-    // GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
-    // double lat, lon, h;
-    // sydneyRegatta.Reverse(rBNn(0),rBNn(1),rBNn(2),lat,lon,h);
-    // rBOg << lat,lon,h;
 }
 
 // Mad broken
@@ -161,28 +138,16 @@ void geotoNED(const Eigen::MatrixXd& rBOg, Eigen::MatrixXd& rBNn){
     assert(isInit);
     assert(rBOg.rows() == 3);     
     
-    // // Declare Required Variables
-    // Eigen::VectorXd N(rBOg.cols());
-    // Eigen::MatrixXd rBOe(3,rBOg.cols());
+    // Declare Required Variables
     rBNn.resize(3,rBOg.cols());  
 
-    // N = (a*a)/(a*a*rBOg.row(0).array().cos()*rBOg.row(0).array().cos()+b*b*rBOg.row(0).array().sin()*rBOg.row(0).array().sin()).sqrt();
-
-    // rBOe.row(0) = (N.array()+rBOg.row(2).array())*rBOg.row(0).array().cos()*rBOg.row(1).array().cos();
-    // rBOe.row(1) = (N.array()+rBOg.row(2).array())*rBOg.row(0).array().cos()*rBOg.row(1).array().sin();
-    // rBOe.row(2) = (((b*b)/(a*a))*N.array()+rBOg.row(2).array())*rBOg.row(0).array().sin();
-    
-    // std::cout << rBOg << std::endl;
-    // // Convert to ECEF coordinates
-    // rBNn = Rne.transpose()*(rBOe - rNOe);
-
+    // Use external library to convert geodetic to NED
     GeographicLib::Geocentric earth(GeographicLib::Constants::WGS84_a(), GeographicLib::Constants::WGS84_f());
-    // GeographicLib::Geocentric earth(a, f);
     GeographicLib::LocalCartesian sydneyRegatta(rNOg(0), rNOg(1), 0, earth);
     double x, y, z;
     sydneyRegatta.Forward(rBOg(0),rBOg(1),rBOg(2),x, y, z);
-    // std::cout << x << " " << y << " " << z << std::endl;
-    // std::cout << rBNn << std::endl;
+
+    // Assign position to vector as needed
     rBNn << y, x, z;
     
 

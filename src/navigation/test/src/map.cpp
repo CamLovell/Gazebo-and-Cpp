@@ -9,6 +9,7 @@
 #include "lidar.h"
 #include "Eig.hpp"
 
+// Testing map update function
 SCENARIO("Update map with known pose and map") {
     GIVEN("A lidar measurment from a known map"){
         Map map;

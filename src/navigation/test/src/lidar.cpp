@@ -10,6 +10,7 @@
 #include "map.h"
 #include "Eig.hpp"
 
+// Testing output of lidar scan function with eigen vectors
 SCENARIO("Lidar Scan on known map") {
     GIVEN("A map with known occupancy"){
         Map map;

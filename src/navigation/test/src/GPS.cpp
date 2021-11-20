@@ -4,6 +4,7 @@
 #include "spacialDual.h"
 #include "particleFilter.h"
 
+// Testing conversion from NED to Lat and Long
 SCENARIO("Converting NED to Latitude and Longitude") {
     GIVEN("Origin as input"){
         Eigen::VectorXd logWeights;
@@ -48,6 +49,8 @@ SCENARIO("Converting NED to Latitude and Longitude") {
         }
     }
 }
+
+// Testing conversion from NED to Lat and Long using a vector of points
 SCENARIO("Converting NED to Latitude and Longitude: Multiple inputs") {
     GIVEN("Origin and other point as input"){
         Eigen::VectorXd logWeights;
@@ -80,6 +83,8 @@ SCENARIO("Converting NED to Latitude and Longitude: Multiple inputs") {
         }
     }
 }
+
+// Testing conversion from Lat and Long to NED
 SCENARIO("Converting Latitude and Longitude to NED") {
     GIVEN("Origin as input"){
         
